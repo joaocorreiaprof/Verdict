@@ -1,0 +1,36 @@
+# === NODE ===
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# === DIST / BUILD OUTPUT ===
+client/dist/
+server/dist/
+build/
+
+# === ENV FILES ===
+.env
+.env.local
+.env.development
+.env.production
+client/.env
+server/.env
+
+# === LOG FILES ===
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === SYSTEM FILES ===
+.DS_Store
+Thumbs.db
+
+# === IDE / EDITOR FILES ===
+.vscode/
+.idea/
+
+# === TYPE DECLARATION CACHE ===
+*.tsbuildinfo
+
+# === OS FILES ===
+*.swp
