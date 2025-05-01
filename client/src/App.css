@@ -10,13 +10,6 @@ p {
   color: #555;
 }
 
-/* Responsive Utilities */
-.container {
-  max-width: 100%; /* Full width by default for mobile */
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
 .grid {
   display: grid;
   gap: 1rem;

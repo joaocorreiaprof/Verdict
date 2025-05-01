@@ -1,0 +1,17 @@
+#public-landing-page {
+}
+
+header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100vw;
+}
+
+.header-title {
+  color: var(--text-primary-red);
+}
+
+.person-library-image {
+  min-height: 70vh;
+}

@@ -1,4 +1,10 @@
-/* Modern CSS Reset */
+:root {
+  --bg-dark: rgb(0, 0, 0);
+  --secondary-bg: #121212;
+  --text-primary-white: #ffffff;
+  --text-primary-red: #e50914;
+}
+
 *,
 *::before,
 *::after {
@@ -8,7 +14,7 @@
 }
 
 html {
-  font-size: 100%; /* 16px default */
+  font-size: 100%;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,8 +24,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--bg-dark);
+  color: var(--text-primary-white);
 }
 
 img,
@@ -46,10 +52,4 @@ a {
 ul,
 ol {
   list-style: none;
-}
-
-/* Accessibility Improvements */
-:focus {
-  outline: 2px solid #007bff; /* Add focus outline for accessibility */
-  outline-offset: 2px;
 }
