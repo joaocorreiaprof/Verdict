@@ -3,6 +3,7 @@
 #public-landing-page {
 }
 
+/*Header*/
 header {
   position: absolute;
   display: flex;
@@ -28,6 +29,86 @@ header {
   cursor: pointer;
 }
 
-.person-library-image {
-  min-height: 70vh;
+/*Section One*/
+
+#landing-section-one {
+  min-height: 60vh;
+  background-image: url("../../assets/images/landingpageimagetwo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.landing-section-one-primary-text {
+  color: white;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.landing-section-one-secondary-text {
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/*Section Two*/
+
+#landing-section-two {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-items {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-item {
+  flex: 0 0 auto; /* Ensure items don't shrink or grow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #e50914;
+}
+
+.carousel-arrow.left {
+  margin-right: 5px;
+}
+
+.carousel-arrow.right {
+  margin-left: 5px;
 }
