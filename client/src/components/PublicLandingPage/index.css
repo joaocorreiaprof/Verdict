@@ -1,3 +1,5 @@
+@import "../../styles/fonts.css";
+
 #public-landing-page {
 }
 
@@ -6,10 +8,24 @@ header {
   display: flex;
   justify-content: space-between;
   min-width: 100vw;
+  padding: 15px 25px;
 }
 
 .header-title {
   color: var(--text-primary-red);
+  font-family: "Merriweather";
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+.header-sign-in-btn {
+  background-color: #e50914;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .person-library-image {

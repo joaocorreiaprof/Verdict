@@ -26,6 +26,7 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-primary-white);
+  letter-spacing: 1px;
 }
 
 img,
