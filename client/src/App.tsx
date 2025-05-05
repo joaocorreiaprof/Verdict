@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 
 //components
 //import GetUsers from "./components/GetUsers";
