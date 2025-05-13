@@ -1,8 +1,10 @@
+//Dependencies
 import { useState } from "react";
+
 //styles
 import "./index.css";
 
-// images
+// people images
 import jk from "../../assets/images/people/jk.jpg";
 import joel from "../../assets/images/people/joel.jpg";
 import keanu from "../../assets/images/people/keanu.jpg";
@@ -15,6 +17,14 @@ import morgan from "../../assets/images/people/morgan.jpg";
 import robin from "../../assets/images/people/robin.jpg";
 import jake from "../../assets/images/people/jake.jpg";
 import emma from "../../assets/images/people/emma.jpg";
+
+//icons
+import movie from "../../assets/images/icons/movie.png";
+import discover from "../../assets/images/icons/discover.png";
+import list from "../../assets/images/icons/list.png";
+import continueMovie from "../../assets/images/icons/continue.png";
+import favourites from "../../assets/images/icons/favourites.png";
+import stats from "../../assets/images/icons/stats.png";
 
 //videos
 import moviesVideo from "../../assets/videos/landingpagemovie.mp4";
@@ -69,6 +79,7 @@ const PublicLandingPage = () => {
           <button className="header-sign-in-btn">Sign In</button>
         </div>
       </header>
+
       <section id="landing-section-one">
         <p className="landing-section-one-primary-text">
           Track what you’ve seen. Plan what’s next.
@@ -78,7 +89,7 @@ const PublicLandingPage = () => {
         </p>
       </section>
       <section id="landing-sections">
-        <h1 className="landing-sections-title">Top 10 Cultural Icons</h1>
+        <h1 className="landing-sections-title">Top 12 Cultural Icons</h1>
         <div className="carousel">
           <button className="carousel-arrow left" onClick={handlePrev}>
             &#8249;
@@ -101,6 +112,7 @@ const PublicLandingPage = () => {
           </button>
         </div>
       </section>
+
       <section id="landing-sections">
         <h1 className="landing-sections-title">The Best Movies and Series</h1>
         <video
@@ -111,40 +123,46 @@ const PublicLandingPage = () => {
           playsInline
           style={{ width: "100%", height: "auto", marginTop: "15px" }}
         />
-        <div className="section-about">
-          <h2>Your Personal Watch Companion</h2>
-          <p>
+        <div className="section-about-test">
+          <h3 className="section-about-title">Your Personal Watch Companion</h3>
+          <p className="section-about-description">
             From 'Next Episode' to 'Just Finished,' we’ve got your binge
             sessions covered.
           </p>
-          <img src="" alt="Happy user tracking their favorite series" />
+          <div className="section-about-icon-container">
+            <img
+              src={movie}
+              alt="Happy user tracking their favorite series"
+              className="landing-sections-icon"
+            />
+          </div>
         </div>
         <div className="section-about">
-          <h2>Discover new movies and series</h2>
+          <h3>Discover new movies and series</h3>
           <p>
             Get personalized recommendations based on what you love to watch
           </p>
-          <img src="" alt="Discovery illustration" />
+          <img src={discover} alt="Discovery illustration" />
         </div>
         <div className="section-about">
-          <h2>Create your perfect watchlists</h2>
+          <h3>Create your perfect watchlists</h3>
           <p>Organize by genre, mood, or create your ultimate binge list</p>
-          <img src="" alt="Watchlist illustration" />
+          <img src={list} alt="Watchlist illustration" />
         </div>
         <div className="section-about">
-          <h2>Pick up right where you left</h2>
+          <h3>Pick up right where you left</h3>
           <p>We'll remember your progress across all your devices</p>
-          <img src="" alt="Progress tracking illustration" />
+          <img src={continueMovie} alt="Progress tracking illustration" />
         </div>
         <div className="section-about">
-          <h2>Share your favorites</h2>
+          <h3>Share your favorites</h3>
           <p>Recommend shows to friends and see what they're watching</p>
-          <img src="" alt="Social sharing illustration" />
+          <img src={favourites} alt="Social sharing illustration" />
         </div>
         <div className="section-about">
-          <h2>Advanced Stats & Insights</h2>
+          <h3>Advanced Stats & Insights</h3>
           <p>See your viewing habits, time spent, and favorite genres</p>
-          <img src="" alt="Statistics illustration" />
+          <img src={stats} alt="Statistics illustration" />
         </div>
       </section>
       <section>{/*Section for a carrousel with top series*/}</section>

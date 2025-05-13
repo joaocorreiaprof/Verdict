@@ -117,3 +117,26 @@ header {
 .carousel-arrow.right {
   margin-left: 5px;
 }
+
+/*sections*/
+
+#landing-sections {
+  gap: 20px;
+}
+.section-about-test {
+}
+
+.section-about-title {
+}
+
+.section-about-description {
+}
+
+.landing-sections-icon {
+  height: auto;
+  width: 3rem;
+}
+.section-about-icon-container {
+  display: flex;
+  justify-content: flex-end;
+}
