@@ -25,9 +25,16 @@ import list from "../../assets/images/icons/list.png";
 import continueMovie from "../../assets/images/icons/continue.png";
 import favourites from "../../assets/images/icons/favourites.png";
 import stats from "../../assets/images/icons/stats.png";
+import controller from "../../assets/images/icons/controller.png";
+import discoverGames from "../../assets/images/icons/discovergames.png";
+import gameLibrary from "../../assets/images/icons/gamelibrary.png";
+import continueGame from "../../assets/images/icons/continuegame.png";
+import achievements from "../../assets/images/icons/achivements.png";
+import gameStats from "../../assets/images/icons/gamestats.png";
 
 //videos
 import moviesVideo from "../../assets/videos/landingpagemovie.mp4";
+import gamesVideo from "../../assets/videos/landingpagegames.mp4";
 
 const PublicLandingPage = () => {
   type Person = {
@@ -88,7 +95,7 @@ const PublicLandingPage = () => {
           All your favorite movies, series, games and books in one place.
         </p>
       </section>
-      <section id="landing-sections">
+      <section className="landing-sections">
         <h1 className="landing-sections-title">Top 12 Cultural Icons</h1>
         <div className="carousel">
           <button className="carousel-arrow left" onClick={handlePrev}>
@@ -113,7 +120,7 @@ const PublicLandingPage = () => {
         </div>
       </section>
 
-      <section id="landing-sections">
+      <section className="landing-sections">
         <h1 className="landing-sections-title">The Best Movies and Series</h1>
         <video
           src={moviesVideo}
@@ -123,10 +130,10 @@ const PublicLandingPage = () => {
           playsInline
           style={{ width: "100%", height: "auto", marginTop: "15px" }}
         />
-        <div className="section-about-test">
-          <h3 className="section-about-title">Your Personal Watch Companion</h3>
+        <div className="section-about">
+          <h3 className="section-about-title">Your personal watch companion</h3>
           <p className="section-about-description">
-            From 'Next Episode' to 'Just Finished,' we’ve got your binge
+            From 'Next Episode' to 'Just Finished,' we've got your binge
             sessions covered.
           </p>
           <div className="section-about-icon-container">
@@ -138,34 +145,166 @@ const PublicLandingPage = () => {
           </div>
         </div>
         <div className="section-about">
-          <h3>Discover new movies and series</h3>
-          <p>
+          <h3 className="section-about-title">
+            Discover new movies and series
+          </h3>
+          <p className="section-about-description">
             Get personalized recommendations based on what you love to watch
           </p>
-          <img src={discover} alt="Discovery illustration" />
+          <div className="section-about-icon-container">
+            <img
+              src={discover}
+              alt="Discovery illustration"
+              className="landing-sections-icon"
+            />
+          </div>
         </div>
         <div className="section-about">
-          <h3>Create your perfect watchlists</h3>
-          <p>Organize by genre, mood, or create your ultimate binge list</p>
-          <img src={list} alt="Watchlist illustration" />
+          <h3 className="section-about-title">
+            Create your perfect watchlists
+          </h3>
+          <p className="section-about-description">
+            Organize by genre, mood, or create your ultimate binge list
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={list}
+              alt="Watchlist illustration"
+              className="landing-sections-icon"
+            />
+          </div>
         </div>
         <div className="section-about">
-          <h3>Pick up right where you left</h3>
-          <p>We'll remember your progress across all your devices</p>
-          <img src={continueMovie} alt="Progress tracking illustration" />
+          <h3 className="section-about-title">Pick up right where you left</h3>
+          <p className="section-about-description">
+            We'll remember your progress across all your devices
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={continueMovie}
+              alt="Progress tracking illustration"
+              className="landing-sections-icon"
+            />
+          </div>
         </div>
         <div className="section-about">
-          <h3>Share your favorites</h3>
-          <p>Recommend shows to friends and see what they're watching</p>
-          <img src={favourites} alt="Social sharing illustration" />
+          <h3 className="section-about-title">Share your favorites</h3>
+          <p className="section-about-description">
+            Recommend shows to friends and see what they're watching
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={favourites}
+              alt="Social sharing illustration"
+              className="landing-sections-icon"
+            />
+          </div>
         </div>
         <div className="section-about">
-          <h3>Advanced Stats & Insights</h3>
-          <p>See your viewing habits, time spent, and favorite genres</p>
-          <img src={stats} alt="Statistics illustration" />
+          <h3 className="section-about-title">Advanced Stats & Insights</h3>
+          <p className="section-about-description">
+            See your viewing habits, time spent, and favorite genres
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={stats}
+              alt="Statistics illustration"
+              className="landing-sections-icon"
+            />
+          </div>
         </div>
       </section>
-      <section>{/*Section for a carrousel with top series*/}</section>
+      <section className="landing-sections">
+        <h1 className="landing-sections-title">The Best Video Games</h1>
+        <video
+          src={gamesVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ width: "100%", height: "auto", marginTop: "15px" }}
+        />
+        <div className="section-about">
+          <h3 className="section-about-title">Your ultimate gaming tracker</h3>
+          <p className="section-about-description">
+            From 'Next Mission' to 'Just Platinum,' we've got your gaming
+            journey covered.
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={controller}
+              alt="Happy gamer tracking their progress"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Discover new games</h3>
+          <p className="section-about-description">
+            Get personalized recommendations based on your play style and
+            preferences
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={discoverGames}
+              alt="Game discovery illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Organize your gaming library</h3>
+          <p className="section-about-description">
+            Sort by genre, platform, or create your ultimate backlog list
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={gameLibrary}
+              alt="Game library illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Continue your adventure</h3>
+          <p className="section-about-description">
+            We'll track your save files and progress across all platforms
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={continueGame}
+              alt="Game progress illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Share your achievements</h3>
+          <p className="section-about-description">
+            Show off your trophies and see what your friends are playing
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={achievements}
+              alt="Achievements illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Game Stats & Insights</h3>
+          <p className="section-about-description">
+            Track your play time, completion rates, and favorite genres
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={gameStats}
+              alt="Game statistics illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+      </section>
       <section>{/*Section for a carrousel with top games*/}</section>
       <section>{/*Section for a carrousel with top books*/}</section>
       <section>{/*FAQ*/}</section>
