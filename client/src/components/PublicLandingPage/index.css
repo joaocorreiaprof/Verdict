@@ -132,6 +132,10 @@ header {
   border-left: 5px solid #e50914;
 }
 
+.section-hided {
+  display: none; /*display this in desktop mode*/
+}
+
 .section-about-title {
 }
 

@@ -26,15 +26,19 @@ import continueMovie from "../../assets/images/icons/continue.png";
 import favourites from "../../assets/images/icons/favourites.png";
 import stats from "../../assets/images/icons/stats.png";
 import controller from "../../assets/images/icons/controller.png";
-import discoverGames from "../../assets/images/icons/discovergames.png";
-import gameLibrary from "../../assets/images/icons/gamelibrary.png";
-import continueGame from "../../assets/images/icons/continuegame.png";
-import achievements from "../../assets/images/icons/achivements.png";
-import gameStats from "../../assets/images/icons/gamestats.png";
+import discovergames from "../../assets/images/icons/discovergames.png";
+import organizegame from "../../assets/images/icons/organizegame.png";
+import bookmarkIcon from "../../assets/images/icons/bookmarkIcon.png";
+import reviewIcon from "../../assets/images/icons/reviewIcon.png";
+import statsIcon from "../../assets/images/icons/statsIcon.png";
 
 //videos
 import moviesVideo from "../../assets/videos/landingpagemovie.mp4";
 import gamesVideo from "../../assets/videos/landingpagegames.mp4";
+import booksVideo from "../../assets/videos/landingpagebooks.mp4";
+
+//components
+import Faq from "../Faq";
 
 const PublicLandingPage = () => {
   type Person = {
@@ -174,7 +178,7 @@ const PublicLandingPage = () => {
             />
           </div>
         </div>
-        <div className="section-about">
+        <div className="section-about section-hided">
           <h3 className="section-about-title">Pick up right where you left</h3>
           <p className="section-about-description">
             We'll remember your progress across all your devices
@@ -187,7 +191,7 @@ const PublicLandingPage = () => {
             />
           </div>
         </div>
-        <div className="section-about">
+        <div className="section-about section-hided">
           <h3 className="section-about-title">Share your favorites</h3>
           <p className="section-about-description">
             Recommend shows to friends and see what they're watching
@@ -200,7 +204,7 @@ const PublicLandingPage = () => {
             />
           </div>
         </div>
-        <div className="section-about">
+        <div className="section-about section-hided">
           <h3 className="section-about-title">Advanced Stats & Insights</h3>
           <p className="section-about-description">
             See your viewing habits, time spent, and favorite genres
@@ -246,7 +250,7 @@ const PublicLandingPage = () => {
           </p>
           <div className="section-about-icon-container">
             <img
-              src={discoverGames}
+              src={discovergames}
               alt="Game discovery illustration"
               className="landing-sections-icon"
             />
@@ -259,55 +263,143 @@ const PublicLandingPage = () => {
           </p>
           <div className="section-about-icon-container">
             <img
-              src={gameLibrary}
+              src={organizegame}
               alt="Game library illustration"
               className="landing-sections-icon"
             />
           </div>
         </div>
-        <div className="section-about">
+        <div className="section-about section-hided">
           <h3 className="section-about-title">Continue your adventure</h3>
           <p className="section-about-description">
             We'll track your save files and progress across all platforms
           </p>
           <div className="section-about-icon-container">
             <img
-              src={continueGame}
+              src={controller}
               alt="Game progress illustration"
               className="landing-sections-icon"
             />
           </div>
         </div>
-        <div className="section-about">
+        <div className="section-about section-hided">
           <h3 className="section-about-title">Share your achievements</h3>
           <p className="section-about-description">
             Show off your trophies and see what your friends are playing
           </p>
           <div className="section-about-icon-container">
             <img
-              src={achievements}
+              src={controller}
               alt="Achievements illustration"
               className="landing-sections-icon"
             />
           </div>
         </div>
-        <div className="section-about">
+        <div className="section-about section-hided">
           <h3 className="section-about-title">Game Stats & Insights</h3>
           <p className="section-about-description">
             Track your play time, completion rates, and favorite genres
           </p>
           <div className="section-about-icon-container">
             <img
-              src={gameStats}
+              src={controller}
               alt="Game statistics illustration"
               className="landing-sections-icon"
             />
           </div>
         </div>
       </section>
-      <section>{/*Section for a carrousel with top games*/}</section>
-      <section>{/*Section for a carrousel with top books*/}</section>
-      <section>{/*FAQ*/}</section>
+      <section className="landing-sections">
+        <h1 className="landing-sections-title">The Best Books</h1>
+        <video
+          src={booksVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ width: "100%", height: "auto", marginTop: "15px" }}
+        />
+        <div className="section-about">
+          <h3 className="section-about-title">Track your reading progress</h3>
+          <p className="section-about-description">
+            Log pages read, set reading goals, and never lose your place
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={bookmarkIcon}
+              alt="Reading progress illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Share your reviews</h3>
+          <p className="section-about-description">
+            Rate books, write reviews, and see what your friends are reading
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={reviewIcon}
+              alt="Book reviews illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about">
+          <h3 className="section-about-title">Reading Stats & Insights</h3>
+          <p className="section-about-description">
+            Track your reading speed, favorite genres, and annual reading
+            challenges
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={statsIcon}
+              alt="Reading statistics illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about section-hided">
+          <h3 className="section-about-title">Continue your adventure</h3>
+          <p className="section-about-description">
+            We'll track your save files and progress across all platforms
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={controller}
+              alt="Game progress illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about section-hided">
+          <h3 className="section-about-title">Share your achievements</h3>
+          <p className="section-about-description">
+            Show off your trophies and see what your friends are playing
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={controller}
+              alt="Achievements illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+        <div className="section-about section-hided">
+          <h3 className="section-about-title">Game Stats & Insights</h3>
+          <p className="section-about-description">
+            Track your play time, completion rates, and favorite genres
+          </p>
+          <div className="section-about-icon-container">
+            <img
+              src={controller}
+              alt="Game statistics illustration"
+              className="landing-sections-icon"
+            />
+          </div>
+        </div>
+      </section>
+      <Faq />
     </div>
   );
 };
