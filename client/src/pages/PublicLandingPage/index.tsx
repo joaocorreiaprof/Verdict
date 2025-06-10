@@ -95,7 +95,12 @@ const PublicLandingPage = () => {
           <h2 className="header-title">Verdict</h2>
         </div>
         <div className="header-right">
-          <button className="header-sign-in-btn">Sign In</button>
+          <button
+            onClick={() => navigate("/login")}
+            className="header-sign-in-btn"
+          >
+            Sign In
+          </button>
         </div>
       </header>
 

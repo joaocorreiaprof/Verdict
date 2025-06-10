@@ -1,6 +1,6 @@
 @import "../../styles/fonts.css";
 
-.login-page-bg {
+.signup-page-bg {
   min-height: 100vh;
   width: 100vw;
   background: linear-gradient(rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0.8)),
@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-.login-header {
+.signup-header {
   position: absolute;
   top: 0;
   left: 0;
@@ -30,7 +30,7 @@
   letter-spacing: 2px;
 }
 
-.login-form-container {
+.signup-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@
   width: 100vw;
 }
 
-.login-form {
+.signup-form {
   background: rgba(30, 30, 30, 0.95);
   border-radius: 1rem;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
@@ -50,7 +50,7 @@
   max-width: 90vw;
 }
 
-.login-title {
+.signup-title {
   color: #fff;
   font-family: "Merriweather", serif;
   font-size: 1.5rem;
@@ -59,7 +59,7 @@
   letter-spacing: 1px;
 }
 
-.login-input {
+.signup-input {
   padding: 0.8rem 1rem;
   border-radius: 6px;
   border: 1px solid #444;
@@ -71,11 +71,11 @@
   transition: border 0.2s;
 }
 
-.login-input:focus {
+.signup-input:focus {
   border: 1.5px solid #e50914;
 }
 
-.login-btn {
+.signup-btn {
   background-color: #e50914;
   color: #fff;
   border: none;
@@ -88,18 +88,25 @@
   transition: background 0.2s;
 }
 
-.login-btn:hover {
+.signup-btn:hover {
   background: #b0060f;
 }
 
-.login-error {
+.signup-error {
   color: #ff4d4f;
   text-align: center;
   margin-top: -0.5rem;
   font-size: 0.98rem;
 }
 
-.login-signup-link {
+.signup-success {
+  color: #4caf50;
+  text-align: center;
+  margin-top: -0.5rem;
+  font-size: 0.98rem;
+}
+
+.signup-login-link {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,7 +116,7 @@
   color: #fff;
 }
 
-.login-link-btn {
+.signup-link-btn {
   background: none;
   border: none;
   color: #e50914;
@@ -121,7 +128,7 @@
 }
 
 @media (max-width: 600px) {
-  .login-form {
+  .signup-form {
     min-width: 90vw;
     padding: 1.5rem 1rem;
   }

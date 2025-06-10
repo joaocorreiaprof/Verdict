@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -31,32 +32,57 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSignup}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Sign Up</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
-    </form>
+    <div className="signup-page-bg">
+      <header className="signup-header">
+        <button onClick={() => navigate("/")} className="header-title">
+          Verdict
+        </button>
+      </header>
+      <div className="signup-form-container">
+        <form className="signup-form" onSubmit={handleSignup}>
+          <h3 className="signup-title">Create Account</h3>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="signup-input"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="signup-input"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="signup-input"
+          />
+          <button type="submit" className="signup-btn">
+            Sign Up
+          </button>
+          {error && <p className="signup-error">{error}</p>}
+          {success && <p className="signup-success">{success}</p>}
+          <div className="signup-login-link">
+            <span>Already have an account?</span>
+            <button
+              type="button"
+              className="signup-link-btn"
+              onClick={() => navigate("/login")}
+            >
+              Log In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
