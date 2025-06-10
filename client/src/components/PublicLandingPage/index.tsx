@@ -1,5 +1,6 @@
 //Dependencies
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //styles
 import "./index.css";
@@ -41,6 +42,13 @@ import booksVideo from "../../assets/videos/landingpagebooks.mp4";
 import Faq from "../Faq";
 
 const PublicLandingPage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home");
+    }
+  }, [navigate]);
+
   type Person = {
     name: string;
     photo: string;
