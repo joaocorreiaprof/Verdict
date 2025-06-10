@@ -39,7 +39,7 @@ import gamesVideo from "../../assets/videos/landingpagegames.mp4";
 import booksVideo from "../../assets/videos/landingpagebooks.mp4";
 
 //components
-import Faq from "../Faq";
+import Faq from "../../components/Faq";
 
 const PublicLandingPage = () => {
   const navigate = useNavigate();
@@ -408,6 +408,17 @@ const PublicLandingPage = () => {
         </div>
       </section>
       <Faq />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "1rem",
+          margin: "2rem 0",
+        }}
+      >
+        <button onClick={() => navigate("/login")}>Login</button>
+        <button onClick={() => navigate("/signup")}>Sign Up</button>
+      </div>
     </div>
   );
 };
