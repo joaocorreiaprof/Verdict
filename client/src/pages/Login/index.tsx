@@ -56,6 +56,30 @@ const Login: React.FC = () => {
           <button type="submit" className="login-btn">
             Login
           </button>
+          <button
+            type="button"
+            className="login-btn"
+            style={{
+              background: "#fff",
+              color: "#444",
+              border: "1px solid #e50914",
+              marginTop: "0.5rem",
+            }}
+            onClick={() => {
+              window.location.href = "/api/auth/google";
+            }}
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
+              alt="Google"
+              style={{
+                width: 20,
+                marginRight: 8,
+                verticalAlign: "middle",
+              }}
+            />
+            Sign in with Google
+          </button>
           {error && <p className="login-error">{error}</p>}
           <div className="login-signup-link">
             <span>Don't have an account?</span>

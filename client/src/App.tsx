@@ -12,6 +12,7 @@ import PublicLandingPage from "./pages/PublicLandingPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import GoogleAuth from "./pages/GoogleAuth";
 
 //styles
 import "./styles/App.css";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<PrivateRoute component={Home} />} />
+          <Route path="/google-auth" element={<GoogleAuth />} />
         </Routes>
       </BrowserRouter>
     </div>

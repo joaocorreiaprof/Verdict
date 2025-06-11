@@ -1,6 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { Application } from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+
+//Google
+import passport from "passport";
+import session from "express-session";
+import "./passport";
 
 //Routes
 import authRoutes from "./routes/authRoutes";
@@ -9,13 +16,28 @@ import userRoutes from "./routes/user";
 //Middlewares
 import { authMiddleware } from "./middleware/authMiddleware";
 
-dotenv.config();
-
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  })
+);
 app.use(express.json());
+
+//Google
+app.use(
+  session({
+    secret: "cyberwolve",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/", (_, res) => {
   res.send("API is running 🎬");
