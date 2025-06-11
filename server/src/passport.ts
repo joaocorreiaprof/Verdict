@@ -32,7 +32,7 @@ passport.use(
             data: {
               email,
               username,
-              password: "", // ou um valor dummy, já que não usará senha
+              password: "",
               name: profile.displayName,
             },
           });
