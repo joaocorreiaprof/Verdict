@@ -8,6 +8,7 @@ header {
   position: absolute;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   min-width: 100vw;
   padding: 15px 25px;
 }
@@ -45,16 +46,17 @@ header {
 }
 
 .landing-section-one-primary-text {
-  color: white;
+  color: var(--text-primary-white);
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
 }
 
 .landing-section-one-secondary-text {
-  color: white;
+  color: var(--text-primary-white);
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 /*Section Two*/
@@ -69,6 +71,7 @@ header {
 
 .landing-sections-title {
   color: var(--text-primary-white);
+  text-align: center;
 }
 
 .carousel {

@@ -111,6 +111,14 @@ const PublicLandingPage = () => {
         <p className="landing-section-one-secondary-text">
           All your favorite movies, series, games and books in one place.
         </p>
+
+        <button
+          onClick={() => navigate("/signup")}
+          className="header-sign-in-btn"
+          style={{ marginTop: "15px" }}
+        >
+          Create your account
+        </button>
       </section>
       <section className="landing-sections">
         <h1 className="landing-sections-title">Top 12 Cultural Icons</h1>
@@ -411,19 +419,15 @@ const PublicLandingPage = () => {
             />
           </div>
         </div>
+        <button
+          onClick={() => navigate("/signup")}
+          className="header-sign-in-btn"
+          style={{ marginTop: "15px" }}
+        >
+          Create your account
+        </button>
       </section>
       <Faq />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "1rem",
-          margin: "2rem 0",
-        }}
-      >
-        <button onClick={() => navigate("/login")}>Login</button>
-        <button onClick={() => navigate("/signup")}>Sign Up</button>
-      </div>
     </div>
   );
 };
