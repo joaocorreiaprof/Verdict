@@ -27,7 +27,10 @@
   font-family: "Merriweather", serif;
   text-transform: uppercase;
   font-size: 2rem;
+  font-weight: bold;
   letter-spacing: 2px;
+  background: none;
+  border: none;
 }
 
 .signup-form-container {
