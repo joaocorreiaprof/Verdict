@@ -1,0 +1,101 @@
+@import "../../styles/fonts.css";
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100vw;
+  padding: 15px 25px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.85);
+  font-family: "Inter";
+}
+
+.header-title {
+  color: var(--text-primary-red);
+  font-family: "Merriweather";
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+}
+
+.sidebar {
+  background: #181818;
+  color: var(--text-primary-white);
+  width: 250px;
+  height: 100%;
+  padding: 30px 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+  left: auto;
+  animation: slideInRight 0.2s;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.sidebar.closing {
+  animation: slideOutRight 0.2s forwards;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 0 0;
+}
+
+.sidebar li {
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  color: var(--text-primary-white);
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.sidebar a:hover {
+  color: var(--text-primary-red);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary-white);
+  font-size: 2rem;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}

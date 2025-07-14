@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //styles
-import "./index.css";
+import "./PublicLandingPage.css";
 
 // people images
 import jk from "../../assets/images/people/jk.jpg";
@@ -90,14 +90,14 @@ const PublicLandingPage = () => {
 
   return (
     <div id="public-landing-page">
-      <header>
-        <div className="header-left">
-          <h2 className="header-title">Verdict</h2>
+      <header className="public-header">
+        <div className="public-header-left">
+          <h2 className="public-header-title">Verdict</h2>
         </div>
-        <div className="header-right">
+        <div className="public-header-right">
           <button
             onClick={() => navigate("/login")}
-            className="header-sign-in-btn"
+            className="public-header-sign-in-btn"
           >
             Sign In
           </button>
@@ -147,26 +147,30 @@ const PublicLandingPage = () => {
 
       <section className="landing-sections">
         <h1 className="landing-sections-title">The Best Movies and Series</h1>
-        <video
-          src={moviesVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ width: "100%", height: "auto", marginTop: "15px" }}
-        />
-        <div className="section-about">
-          <h3 className="section-about-title">Your personal watch companion</h3>
-          <p className="section-about-description">
-            From 'Next Episode' to 'Just Finished,' we've got your binge
-            sessions covered.
-          </p>
-          <div className="section-about-icon-container">
-            <img
-              src={movie}
-              alt="Happy user tracking their favorite series"
-              className="landing-sections-icon"
-            />
+        <div className="test-div">
+          <video
+            src={moviesVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: "100%", height: "auto", marginTop: "15px" }}
+          />
+          <div className="section-about">
+            <h3 className="section-about-title">
+              Your personal watch companion
+            </h3>
+            <p className="section-about-description">
+              From 'Next Episode' to 'Just Finished,' we've got your binge
+              sessions covered.
+            </p>
+            <div className="section-about-icon-container">
+              <img
+                src={movie}
+                alt="Happy user tracking their favorite series"
+                className="landing-sections-icon"
+              />
+            </div>
           </div>
         </div>
         <div className="section-about">
