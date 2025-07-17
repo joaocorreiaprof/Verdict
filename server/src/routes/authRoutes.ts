@@ -40,7 +40,12 @@ router.get(
       process.env.JWT_SECRET!,
       { expiresIn: "1h" }
     );
-    res.redirect(`${process.env.CLIENT_URL}/google-auth?token=${token}`);
+    res.redirect(
+      `${(process.env.CLIENT_URL || "").replace(
+        /\/$/,
+        ""
+      )}/google-auth?token=${token}`
+    );
   }
 );
 
