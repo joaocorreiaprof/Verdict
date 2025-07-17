@@ -12,6 +12,7 @@ import "./passport";
 //Routes
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/user";
+import tmdbRoutes from "./routes/tmdb";
 
 //Middlewares
 import { authMiddleware } from "./middleware/authMiddleware";
@@ -46,6 +47,7 @@ app.get("/", (_, res) => {
 //Api use
 app.use("/api/auth", authRoutes);
 app.use("/api/users", authMiddleware, userRoutes);
+app.use("/api", tmdbRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
