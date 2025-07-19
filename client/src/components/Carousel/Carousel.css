@@ -1,0 +1,101 @@
+/* 📱 Mobile-first default styles */
+.carousel-section {
+  margin-bottom: 24px;
+  padding-left: 12px;
+}
+
+.carousel-title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 4px 0 8px 4px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  min-width: 120px;
+  background-color: #2d2d2d;
+  padding: 6px;
+  border-radius: 8px;
+  color: white;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
+}
+
+.carousel-image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.carousel-item-title {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.carousel-rating {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+/* ❌ Arrows hidden by default for mobile */
+.carousel-arrow {
+  display: none;
+}
+
+/* 💻 Enable arrows for larger screens later */
+@media screen and (min-width: 768px) {
+  .carousel-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .carousel-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .carousel-arrow.left {
+    left: 0;
+  }
+
+  .carousel-arrow.right {
+    right: 0;
+  }
+}

@@ -9,6 +9,7 @@ import { getTrending } from "../../services/api";
 
 //components
 import Header from "../../components/Header/Header";
+import Carousel from "../../components/Carousel/Carousel";
 
 interface TrendingItem {
   id: number;
@@ -54,22 +55,8 @@ const Home = () => {
     <div id="home">
       <Header />
       <button onClick={handleLogout}>Logout</button>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="bg-gray-800 p-3 rounded text-white shadow"
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-              alt={item.title || item.name}
-              className="rounded"
-            />
-            <h2 className="mt-2 font-bold">{item.title || item.name}</h2>
-            <p className="text-sm text-gray-300">⭐ {item.vote_average}</p>
-          </div>
-        ))}
-      </div>
+
+      <Carousel title="🔥 Trending Now" items={items} />
     </div>
   );
 };
