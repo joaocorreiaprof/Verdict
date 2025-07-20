@@ -31,34 +31,36 @@ const Carousel: React.FC<CarouselProps> = ({ title, items }) => {
   };
 
   return (
-    <div className="carousel-section">
-      <h2 className="carousel-title">{title}</h2>
+    <div className="home-carousel-section">
+      <h2 className="home-carousel-title">{title}</h2>
 
-      <div className="carousel-wrapper">
+      <div className="home-carousel-wrapper">
         <button
-          className="carousel-arrow left"
+          className="home-carousel-arrow home-carousel-left"
           onClick={() => scroll("left")}
           aria-label="Scroll Left"
         >
           ◀
         </button>
 
-        <div className="carousel-container" ref={scrollRef}>
+        <div className="home-carousel-container" ref={scrollRef}>
           {items.map((item) => (
-            <div key={item.id} className="carousel-item">
+            <div key={item.id} className="home-carousel-item">
               <img
                 src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
                 alt={item.title || item.name}
-                className="carousel-image"
+                className="home-carousel-image"
               />
-              <h3 className="carousel-item-title">{item.title || item.name}</h3>
-              <p className="carousel-rating">⭐ {item.vote_average}</p>
+              <h3 className="home-carousel-item-title">
+                {item.title || item.name}
+              </h3>
+              <p className="home-carousel-rating">⭐ {item.vote_average}</p>
             </div>
           ))}
         </div>
 
         <button
-          className="carousel-arrow right"
+          className="home-carousel-arrow home-carousel-right"
           onClick={() => scroll("right")}
           aria-label="Scroll Right"
         >
