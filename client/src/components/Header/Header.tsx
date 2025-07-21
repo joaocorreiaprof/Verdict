@@ -4,6 +4,7 @@ import "./Header.css";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Logout from "../Buttons/Logout/Logout";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -67,6 +68,9 @@ const Header: React.FC = () => {
                 <Link to="/games" onClick={handleSidebarClose}>
                   Games
                 </Link>
+              </li>
+              <li>
+                <Logout />
               </li>
             </ul>
           </nav>

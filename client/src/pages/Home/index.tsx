@@ -1,7 +1,6 @@
 import "./Home.css";
 
 //dependencies
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //services
@@ -24,13 +23,6 @@ interface TrendingItem {
 }
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
   const [items, setItems] = useState<TrendingItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,9 +46,7 @@ const Home = () => {
   return (
     <div id="home">
       <Header />
-      <button onClick={handleLogout}>Logout</button>
-
-      <Carousel title="🔥 Trending Now" items={items} />
+      <Carousel title="🔥 Trending Movies" items={items} />
     </div>
   );
 };
