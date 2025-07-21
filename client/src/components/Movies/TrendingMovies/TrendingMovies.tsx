@@ -1,15 +1,15 @@
-import "./TrendingMovies.css"
+import "./TrendingMovies.css";
 
 //dependencies
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 //services
-import { getTrending } from "../../../services/api"
+import { getTrending } from "../../../services/api";
 
 //components
-import Carousel from "../../Carousel/Carousel"
+import Carousel from "../../Carousel/Carousel";
 
-interface TrendingItem {
+interface TrendingMoviesItem {
   id: number;
   title?: string;
   name?: string;
@@ -21,4 +21,8 @@ interface TrendingItem {
   first_air_date?: string;
 }
 
-const TrendingMovies = () =
+const TrendingMovies = () => {
+  const [trendingMovies, setTrendingMovies] = useState<TrendingMoviesItem[]>(
+    []
+  );
+};
