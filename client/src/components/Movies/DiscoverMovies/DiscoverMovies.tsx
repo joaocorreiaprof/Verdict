@@ -8,20 +8,20 @@ import { getTrending } from "../../../services/api";
 
 //components
 import Carousel from "../../Carousel/Carousel";
-interface TrendingMoviesItem {
+
+interface DiscoverMoviesItem {
   id: number;
   title?: string;
-  name?: string;
   overview: string;
   poster_path: string;
-  media_type: string;
   vote_average: number;
   release_date?: string;
-  first_air_date?: string;
 }
 
-const TrendingMovies = () => {
-  const [trendingMovies, setTrendingMovies] = useState<TrendingMoviesItem[]>(
+//NOT WORKING PROBABLY BECAUSE IF PUSHING TRENDING MOVIES
+//need to change api.ts and do the backend for this
+const DiscoverMovies = () => {
+  const [discoverMovies, setDiscoverMovies] = useState<DiscoverMoviesItem[]>(
     []
   );
   const [loading, setLoading] = useState(true);
@@ -30,9 +30,9 @@ const TrendingMovies = () => {
     const fetchData = async () => {
       try {
         const data = await getTrending();
-        setTrendingMovies(data.results);
+        setDiscoverMovies(data.results);
       } catch (error) {
-        console.error("Error fetching trending movies:", error);
+        console.error("Error fetching discover movies:", error);
       } finally {
         setLoading(false);
       }
@@ -44,10 +44,10 @@ const TrendingMovies = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div id="trending-movies">
-      <Carousel title="🔥 Trending Movies" items={trendingMovies} />
+    <div id="discover-movies">
+      <Carousel title="🎬 Discover Movies" items={discoverMovies} />
     </div>
   );
 };
 
-export default TrendingMovies;
+export default DiscoverMovies;
