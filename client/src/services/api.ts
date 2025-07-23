@@ -8,3 +8,8 @@ export const getTrending = async () => {
   const response = await API.get("/trending");
   return response.data;
 };
+
+export const getDiscover = async () => {
+  const response = await API.get("/discover");
+  return response.data;
+};

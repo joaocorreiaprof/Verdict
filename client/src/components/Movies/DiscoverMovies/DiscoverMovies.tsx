@@ -1,10 +1,10 @@
-import "./TrendingMovies.css";
+import "./DiscoverMovies.css";
 
 //dependencies
 import { useEffect, useState } from "react";
 
 //services
-import { getTrending } from "../../../services/api";
+import { getDiscover } from "../../../services/api";
 
 //components
 import Carousel from "../../Carousel/Carousel";
@@ -18,8 +18,6 @@ interface DiscoverMoviesItem {
   release_date?: string;
 }
 
-//NOT WORKING PROBABLY BECAUSE IF PUSHING TRENDING MOVIES
-//need to change api.ts and do the backend for this
 const DiscoverMovies = () => {
   const [discoverMovies, setDiscoverMovies] = useState<DiscoverMoviesItem[]>(
     []
@@ -29,7 +27,7 @@ const DiscoverMovies = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTrending();
+        const data = await getDiscover();
         setDiscoverMovies(data.results);
       } catch (error) {
         console.error("Error fetching discover movies:", error);
