@@ -4,7 +4,7 @@ import "./DiscoverMovies.css";
 import { useEffect, useState } from "react";
 
 //services
-import { getDiscover } from "../../../services/api";
+import { getDiscover } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";

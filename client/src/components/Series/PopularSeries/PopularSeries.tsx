@@ -1,14 +1,12 @@
-import "./TrendingMovies.css";
-
 //dependencies
 import { useEffect, useState } from "react";
 
 //services
-import { getTrending } from "../../../services/moviesServiceClient";
+import { getPopular } from "../../../services/seriesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
-interface TrendingMoviesItem {
+interface PopularSeriesItem {
   id: number;
   title?: string;
   name?: string;
@@ -20,19 +18,17 @@ interface TrendingMoviesItem {
   first_air_date?: string;
 }
 
-const TrendingMovies = () => {
-  const [trendingMovies, setTrendingMovies] = useState<TrendingMoviesItem[]>(
-    []
-  );
+const PopularSeries = () => {
+  const [popularSeries, setPopularSeries] = useState<PopularSeriesItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTrending();
-        setTrendingMovies(data.results);
+        const data = await getPopular();
+        setPopularSeries(data.results);
       } catch (error) {
-        console.error("Error fetching trending movies:", error);
+        console.error("Error fetching popular series:", error);
       } finally {
         setLoading(false);
       }
@@ -45,9 +41,9 @@ const TrendingMovies = () => {
 
   return (
     <div id="trending-movies">
-      <Carousel title="🔥 Trending Movies" items={trendingMovies} />
+      <Carousel title="🔥 Popular Series" items={popularSeries} />
     </div>
   );
 };
 
-export default TrendingMovies;
+export default PopularSeries;

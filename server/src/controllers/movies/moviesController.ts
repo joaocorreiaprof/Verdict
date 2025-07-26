@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import tmdb from "../../services/tmdb";
+import tmdb from "../../services/moviesServiceServer";
 
 export const getTrending = async (req: Request, res: Response) => {
   try {

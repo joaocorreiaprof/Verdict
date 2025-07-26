@@ -13,6 +13,7 @@ import "./passport";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/user";
 import moviesRoutes from "./routes/movies/moviesRoutes";
+import seriesRoutes from "./routes/series/seriesRoutes";
 
 //Middlewares
 import { authMiddleware } from "./middleware/authMiddleware";
@@ -47,7 +48,8 @@ app.get("/", (_, res) => {
 //Api use
 app.use("/api/auth", authRoutes);
 app.use("/api/users", authMiddleware, userRoutes);
-app.use("/api", moviesRoutes);
+app.use("/api/movies", moviesRoutes);
+app.use("/api/series", seriesRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
