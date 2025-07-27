@@ -8,3 +8,8 @@ export const getPopular = async () => {
   const response = await API.get("/popular");
   return response.data;
 };
+
+export const getTopRated = async () => {
+  const response = await API.get("/top-rated");
+  return response.data;
+};
