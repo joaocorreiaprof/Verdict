@@ -6,6 +6,7 @@ import TrendingMovies from "../../components/Movies/TrendingMovies/TrendingMovie
 import DiscoverMovies from "../../components/Movies/DiscoverMovies/DiscoverMovies";
 import PopularSeries from "../../components/Series/PopularSeries/PopularSeries";
 import TopRatedSeries from "../../components/Series/TopRatedSeries/TopRatedSeries";
+import TopGames from "../../components/Games/TopGames";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <DiscoverMovies />
       <TopRatedSeries />
       <PopularSeries />
+      <TopGames />
     </div>
   );
 };
