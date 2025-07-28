@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "./Carousel.css"; // Reuse the same CSS
+import "./GameCarousel.css";
 
 interface GameCarouselItem {
   id: number;
@@ -27,39 +27,40 @@ const GameCarousel: React.FC<GameCarouselProps> = ({ title, items }) => {
     });
   };
 
-  // Convert RAWG rating (0-5) to match TMDB's (0-10) scale
   const convertRating = (rating: number) => (rating * 2).toFixed(1);
 
   return (
-    <div className="home-carousel-section">
-      <h2 className="home-carousel-title">{title}</h2>
-      <div className="home-carousel-wrapper">
+    <div className="game-carousel-section">
+      <h2 className="game-carousel-title">{title}</h2>
+      <div className="game-carousel-wrapper">
         <button
-          className="home-carousel-arrow home-carousel-left"
+          className="game-carousel-arrow game-carousel-left"
           onClick={() => scroll("left")}
+          aria-label="Scroll Left"
         >
           ◀
         </button>
-        <div className="home-carousel-container" ref={scrollRef}>
+        <div className="game-carousel-container" ref={scrollRef}>
           {items.map((item) => (
-            <div key={item.id} className="home-carousel-item">
-              <div className="game-image-container">
+            <div key={item.id} className="game-carousel-item">
+              <div className="game-carousel-image-wrapper">
                 <img
                   src={item.background_image || "/placeholder-game.png"}
                   alt={item.name}
-                  className="home-carousel-image"
+                  className="game-carousel-image"
                 />
               </div>
-              <h3 className="home-carousel-item-title">{item.name}</h3>
-              <p className="home-carousel-rating">
+              <h3 className="game-carousel-item-title">{item.name}</h3>
+              <p className="game-carousel-rating">
                 ⭐ {convertRating(item.rating)}
               </p>
             </div>
           ))}
         </div>
         <button
-          className="home-carousel-arrow home-carousel-right"
+          className="game-carousel-arrow game-carousel-right"
           onClick={() => scroll("right")}
+          aria-label="Scroll Right"
         >
           ▶
         </button>
