@@ -1,101 +1,106 @@
 .game-carousel-section {
-  margin: 40px 0;
-  padding: 0 40px;
+  padding: 12px;
 }
 
 .game-carousel-title {
-  font-size: 1.8rem;
-  margin-bottom: 16px;
-  color: #fff;
+  color: white;
+  font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 8px;
+  padding-left: 4px;
 }
 
 .game-carousel-wrapper {
   position: relative;
-}
-
-.game-carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.6);
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 2;
-  padding: 12px;
-  border-radius: 50%;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  display: none; /*Barely makes this move while the loop*/
-}
-
-.game-carousel-wrapper:hover .game-carousel-arrow {
-  display: block;
-}
-
-.game-carousel-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-  transform: scale(1.1);
-}
-
-.game-carousel-left {
-  left: 0;
-}
-
-.game-carousel-right {
-  right: 0;
+  display: flex;
+  align-items: center;
 }
 
 .game-carousel-container {
   display: flex;
   overflow-x: auto;
+  gap: 12px;
+  padding: 4px 0 8px 4px;
   scroll-behavior: smooth;
-  padding: 10px 0;
-  gap: 16px;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .game-carousel-container::-webkit-scrollbar {
-  display: none; /* Chrome */
+  display: none;
 }
 
 .game-carousel-item {
-  flex: 0 0 auto;
-  width: 200px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.game-carousel-item:hover {
-  transform: scale(1.25);
-  z-index: 5;
+  max-width: 105px;
+  background-color: #2d2d2d;
+  border-radius: 8px;
+  color: white;
+  flex-shrink: 0;
+  transition: transform 0.2s;
 }
 
 .game-carousel-image-wrapper {
   width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 8px;
 }
 
 .game-carousel-image {
   width: 100%;
-  height: 100%;
+  border-radius: 4px;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  aspect-ratio: 2 / 3;
 }
 
 .game-carousel-item-title {
-  font-size: 1rem;
-  margin-top: 10px;
-  color: #fff;
+  margin-top: 6px;
+  font-size: 0.85rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .game-carousel-rating {
-  font-size: 0.85rem;
-  color: #bbb;
+  font-size: 0.75rem;
+  color: #aaa;
+  text-align: center;
+}
+
+/* ❌ Arrows hidden by default (mobile-first) */
+.game-carousel-arrow {
+  display: none;
+}
+
+/* 💻 Arrows and hover effects on larger screens */
+@media screen and (min-width: 768px) {
+  .game-carousel-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .game-carousel-left {
+    left: 0;
+  }
+
+  .game-carousel-right {
+    right: 0;
+  }
+
+  .game-carousel-item:hover {
+    transform: scale(1.05);
+  }
+
+  .game-carousel-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 }
