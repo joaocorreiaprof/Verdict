@@ -8,6 +8,7 @@ import PopularSeries from "../../components/Series/PopularSeries/PopularSeries";
 import TopRatedSeries from "../../components/Series/TopRatedSeries/TopRatedSeries";
 import TopGames from "../../components/Games/TopGames";
 import NewReleases from "../../components/Games/NewReleases";
+import TopRatedBooks from "../../components/Books/TopRatedBooks";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <PopularSeries />
       <TopGames />
       <NewReleases />
+      <TopRatedBooks />
     </div>
   );
 };
