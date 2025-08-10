@@ -1,0 +1,107 @@
+/* 📚 Books Carousel Styles */
+.books-carousel-section {
+  padding: 12px;
+}
+
+.books-carousel-title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.books-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.books-carousel-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 4px 0 8px 4px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.books-carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.books-carousel-item {
+  width: 105px; /* match movie carousel width */
+  background-color: #2d2d2d;
+  border-radius: 8px;
+  color: white;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.books-carousel-image {
+  width: 100%;
+  height: 158px; /* match movie carousel height */
+  object-fit: cover; /* keeps aspect ratio, crops overflow */
+  border-radius: 4px;
+}
+
+.books-carousel-item-title {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  min-height: 18px; /* keeps text area consistent */
+}
+
+.books-carousel-rating {
+  font-size: 0.75rem;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* ❌ Hide arrows on mobile */
+.books-carousel-arrow {
+  display: none;
+}
+
+/* 💻 Show arrows on desktop */
+@media screen and (min-width: 768px) {
+  .books-carousel-arrow {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .books-carousel-item:hover {
+    transform: scale(1.05);
+  }
+
+  .books-carousel-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .books-carousel-left {
+    left: 0;
+  }
+
+  .books-carousel-right {
+    right: 0;
+  }
+}
