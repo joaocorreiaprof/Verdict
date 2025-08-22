@@ -8,6 +8,7 @@ import { getTrending } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
+import Loading from "../../Loading/Loading";
 interface TrendingMoviesItem {
   id: number;
   title?: string;
@@ -41,7 +42,13 @@ const TrendingMovies = () => {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div id="trending-movies">

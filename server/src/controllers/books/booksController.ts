@@ -28,7 +28,7 @@ export const getNewReleasesBooks = async (req: Request, res: Response) => {
   try {
     const { data } = await googleBooks.get("/volumes", {
       params: {
-        q: "subject:fiction",
+        q: "subject:comedy",
         orderBy: "newest",
         maxResults: 20,
         printType: "books",
