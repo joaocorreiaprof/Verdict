@@ -22,3 +22,43 @@ export const getDiscover = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to fetch discover movies" });
   }
 };
+
+export const getPopularMovies = async (req: Request, res: Response) => {
+  try {
+    const { data } = await tmdb.get("/movie/popular?language=en-US&page=1");
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch popular movies" });
+  }
+};
+
+export const getTopRatedMovies = async (req: Request, res: Response) => {
+  try {
+    const { data } = await tmdb.get("/movie/top_rated?language=en-US&page=1");
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch top-rated movies" });
+  }
+};
+
+export const getUpcomingMovies = async (req: Request, res: Response) => {
+  try {
+    const { data } = await tmdb.get("/movie/upcoming?language=en-US&page=1");
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch upcoming movies" });
+  }
+};
+
+export const getNowPlayingMovies = async (req: Request, res: Response) => {
+  try {
+    const { data } = await tmdb.get("/movie/now_playing?language=en-US&page=1");
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch now playing movies" });
+  }
+};

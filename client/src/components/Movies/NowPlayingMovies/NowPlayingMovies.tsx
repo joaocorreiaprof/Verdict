@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 
 //services
-import { getDiscover } from "../../../services/moviesServiceClient";
+import { getNowPlayingMovies } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
 
-interface DiscoverMoviesItem {
+interface NowPlayingMoviesItem {
   id: number;
   title?: string;
   overview: string;
@@ -16,19 +16,19 @@ interface DiscoverMoviesItem {
   release_date?: string;
 }
 
-const DiscoverMovies = () => {
-  const [discoverMovies, setDiscoverMovies] = useState<DiscoverMoviesItem[]>(
-    []
-  );
+const NowPlayingMovies = () => {
+  const [nowPlayingMovies, setNowPlayingMovies] = useState<
+    NowPlayingMoviesItem[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getDiscover();
-        setDiscoverMovies(data.results);
+        const data = await getNowPlayingMovies();
+        setNowPlayingMovies(data.results);
       } catch (error) {
-        console.error("Error fetching discover movies:", error);
+        console.error("Error fetching now playing movies:", error);
       } finally {
         setLoading(false);
       }
@@ -40,10 +40,10 @@ const DiscoverMovies = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div id="discover-movies">
-      <Carousel title="🎬 Discover Movies" items={discoverMovies} />
+    <div id="now-playing-movies">
+      <Carousel title="🎬 Now Playing Movies" items={nowPlayingMovies} />
     </div>
   );
 };
 
-export default DiscoverMovies;
+export default NowPlayingMovies;

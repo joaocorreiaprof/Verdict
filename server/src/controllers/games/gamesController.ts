@@ -24,10 +24,12 @@ export const getNewReleases = async (req: Request, res: Response) => {
   try {
     const { data } = await rawg.get("/games", {
       params: {
-        ordering: "-released",
+        ordering: "-released,-rating",
         page_size: 20,
-        platforms: "4,18,1,7",
-        dates: "2025-05-01,2025-08-01", // Adjust as needed
+        platforms: "4,18,1,7", // PlayStation, Xbox, PC, Nintendo
+        dates: "2025-06-01,2025-08-01", // Narrower date range
+        exclude_additions: true, // Exclude DLC and add-ons
+        search_exact: true, // More precise matching
       },
     });
     res.json(data);

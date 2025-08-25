@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 
 //services
-import { getDiscover } from "../../../services/moviesServiceClient";
+import { getUpcomingMovies } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
 
-interface DiscoverMoviesItem {
+interface UpcomingMoviesItem {
   id: number;
   title?: string;
   overview: string;
@@ -16,8 +16,8 @@ interface DiscoverMoviesItem {
   release_date?: string;
 }
 
-const DiscoverMovies = () => {
-  const [discoverMovies, setDiscoverMovies] = useState<DiscoverMoviesItem[]>(
+const UpcomingMovies = () => {
+  const [upcomingMovies, setUpcomingMovies] = useState<UpcomingMoviesItem[]>(
     []
   );
   const [loading, setLoading] = useState(true);
@@ -25,10 +25,10 @@ const DiscoverMovies = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getDiscover();
-        setDiscoverMovies(data.results);
+        const data = await getUpcomingMovies();
+        setUpcomingMovies(data.results);
       } catch (error) {
-        console.error("Error fetching discover movies:", error);
+        console.error("Error fetching upcoming movies:", error);
       } finally {
         setLoading(false);
       }
@@ -40,10 +40,10 @@ const DiscoverMovies = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div id="discover-movies">
-      <Carousel title="🎬 Discover Movies" items={discoverMovies} />
+    <div id="upcoming-movies">
+      <Carousel title="🎬 Upcoming Movies" items={upcomingMovies} />
     </div>
   );
 };
 
-export default DiscoverMovies;
+export default UpcomingMovies;
