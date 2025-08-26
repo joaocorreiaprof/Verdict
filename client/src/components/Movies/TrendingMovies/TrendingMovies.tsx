@@ -9,6 +9,8 @@ import { getTrending } from "../../../services/moviesServiceClient";
 //components
 import Carousel from "../../Carousel/Carousel";
 import Loading from "../../Loading/Loading";
+import MovieModal from "../../Modals/MovieModal"; // Import the modal
+
 interface TrendingMoviesItem {
   id: number;
   title?: string;
@@ -26,6 +28,10 @@ const TrendingMovies = () => {
     []
   );
   const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState<TrendingMoviesItem | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +58,19 @@ const TrendingMovies = () => {
 
   return (
     <div id="trending-movies">
-      <Carousel title="🔥 Trending Movies" items={trendingMovies} />
+      <Carousel
+        title="🔥 Trending Movies"
+        items={trendingMovies}
+        onItemClick={(movie) => {
+          setSelectedMovie(movie as TrendingMoviesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <MovieModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        movie={selectedMovie}
+      />
     </div>
   );
 };

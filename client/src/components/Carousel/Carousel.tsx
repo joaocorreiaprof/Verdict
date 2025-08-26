@@ -12,9 +12,10 @@ interface CarouselItem {
 interface CarouselProps {
   title: string;
   items: CarouselItem[];
+  onItemClick?: (item: CarouselItem) => void; // Add this line
 }
 
-const Carousel: React.FC<CarouselProps> = ({ title, items }) => {
+const Carousel: React.FC<CarouselProps> = ({ title, items, onItemClick }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -45,7 +46,12 @@ const Carousel: React.FC<CarouselProps> = ({ title, items }) => {
 
         <div className="home-carousel-container" ref={scrollRef}>
           {items.map((item) => (
-            <div key={item.id} className="home-carousel-item">
+            <div
+              key={item.id}
+              className="home-carousel-item"
+              onClick={() => onItemClick && onItemClick(item)} // Add this line
+              style={{ cursor: onItemClick ? "pointer" : "default" }} // Optional: show pointer
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
                 alt={item.title || item.name}
