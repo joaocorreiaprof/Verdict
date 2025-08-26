@@ -48,9 +48,9 @@ const MovieModal = ({ isOpen, onClose, movie }: MovieModalProps) => {
         <p className="modal-overview">{movie.overview}</p>
 
         <div className="modal-actions">
-          <button className="btn-like">👍 Gostei</button>
-          <button className="btn-favorite">📌 Favoritos</button>
-          <button className="btn-details">🔎 Ver mais</button>
+          <button className="btn-like">👍</button>
+          <button className="btn-favorite">📌</button>
+          <button className="btn-details">🔎</button>
         </div>
       </div>
     </div>
