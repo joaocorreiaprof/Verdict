@@ -6,6 +6,7 @@ import { getNowPlayingMovies } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
+import MovieModal from "../../Modals/MovieModal";
 
 interface NowPlayingMoviesItem {
   id: number;
@@ -21,6 +22,9 @@ const NowPlayingMovies = () => {
     NowPlayingMoviesItem[]
   >([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] =
+    useState<NowPlayingMoviesItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +45,19 @@ const NowPlayingMovies = () => {
 
   return (
     <div id="now-playing-movies">
-      <Carousel title="🎬 Now Playing Movies" items={nowPlayingMovies} />
+      <Carousel
+        title="🎬 Now Playing Movies"
+        items={nowPlayingMovies}
+        onItemClick={(movie) => {
+          setSelectedMovie(movie as NowPlayingMoviesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <MovieModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        movie={selectedMovie}
+      />
     </div>
   );
 };

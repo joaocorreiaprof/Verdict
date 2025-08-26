@@ -6,6 +6,7 @@ import { getTopRatedMovies } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
+import MovieModal from "../../Modals/MovieModal";
 
 interface TopRatedMoviesItem {
   id: number;
@@ -21,6 +22,10 @@ const TopRatedMovies = () => {
     []
   );
   const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState<TopRatedMoviesItem | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +46,19 @@ const TopRatedMovies = () => {
 
   return (
     <div id="top-rated-movies">
-      <Carousel title="⭐ Top Rated Movies" items={topRatedMovies} />
+      <Carousel
+        title="⭐ Top Rated Movies"
+        items={topRatedMovies}
+        onItemClick={(movie) => {
+          setSelectedMovie(movie as TopRatedMoviesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <MovieModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        movie={selectedMovie}
+      />
     </div>
   );
 };

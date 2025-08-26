@@ -6,6 +6,7 @@ import { getUpcomingMovies } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
+import MovieModal from "../../Modals/MovieModal";
 
 interface UpcomingMoviesItem {
   id: number;
@@ -21,6 +22,10 @@ const UpcomingMovies = () => {
     []
   );
   const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState<UpcomingMoviesItem | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +46,19 @@ const UpcomingMovies = () => {
 
   return (
     <div id="upcoming-movies">
-      <Carousel title="🎬 Upcoming Movies" items={upcomingMovies} />
+      <Carousel
+        title="🎬 Upcoming Movies"
+        items={upcomingMovies}
+        onItemClick={(movie) => {
+          setSelectedMovie(movie as UpcomingMoviesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <MovieModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        movie={selectedMovie}
+      />
     </div>
   );
 };

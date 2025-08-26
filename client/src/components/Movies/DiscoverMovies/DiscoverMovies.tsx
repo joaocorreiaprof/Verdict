@@ -6,6 +6,7 @@ import { getDiscover } from "../../../services/moviesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
+import MovieModal from "../../Modals/MovieModal";
 
 interface DiscoverMoviesItem {
   id: number;
@@ -21,6 +22,10 @@ const DiscoverMovies = () => {
     []
   );
   const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState<DiscoverMoviesItem | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +46,19 @@ const DiscoverMovies = () => {
 
   return (
     <div id="discover-movies">
-      <Carousel title="🎬 Discover Movies" items={discoverMovies} />
+      <Carousel
+        title="🎬 Discover Movies"
+        items={discoverMovies}
+        onItemClick={(movie) => {
+          setSelectedMovie(movie as DiscoverMoviesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <MovieModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        movie={selectedMovie}
+      />
     </div>
   );
 };

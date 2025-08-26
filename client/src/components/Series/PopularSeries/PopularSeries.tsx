@@ -6,6 +6,8 @@ import { getPopular } from "../../../services/seriesServiceClient";
 
 //components
 import Carousel from "../../Carousel/Carousel";
+import MovieModal from "../../Modals/MovieModal";
+
 interface PopularSeriesItem {
   id: number;
   title?: string;
@@ -21,6 +23,9 @@ interface PopularSeriesItem {
 const PopularSeries = () => {
   const [popularSeries, setPopularSeries] = useState<PopularSeriesItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSeries, setSelectedSeries] =
+    useState<PopularSeriesItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +46,19 @@ const PopularSeries = () => {
 
   return (
     <div id="trending-movies">
-      <Carousel title="🔥 Popular Series" items={popularSeries} />
+      <Carousel
+        title="🔥 Popular Series"
+        items={popularSeries}
+        onItemClick={(series) => {
+          setSelectedSeries(series as PopularSeriesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <MovieModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        movie={selectedSeries}
+      />
     </div>
   );
 };
