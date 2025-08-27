@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import GameCarousel from "../../components/Carousel/GameCarousel";
+import GameModal from "../Modals/GamesModal";
 import { getUpcomingGames } from "../../services/gamesServiceClient";
 
 interface UpcomingGameItem {
@@ -12,6 +13,10 @@ interface UpcomingGameItem {
 const UpcomingGames = () => {
   const [upcomingGames, setUpcomingGames] = useState<UpcomingGameItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedGame, setSelectedGame] = useState<UpcomingGameItem | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +37,19 @@ const UpcomingGames = () => {
 
   return (
     <div id="upcoming-games">
-      <GameCarousel title="⏳ Upcoming Games" items={upcomingGames} />
+      <GameCarousel
+        title="⏳ Upcoming Games"
+        items={upcomingGames}
+        onItemClick={(game) => {
+          setSelectedGame(game as UpcomingGameItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <GameModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        game={selectedGame}
+      />
     </div>
   );
 };

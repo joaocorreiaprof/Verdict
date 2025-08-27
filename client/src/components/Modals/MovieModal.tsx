@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { X } from "lucide-react"; // ícone de fechar
-import "./MovieModal.css";
+import "./Modal.css";
 
 interface MovieModalProps {
   isOpen: boolean;
@@ -18,7 +18,7 @@ interface MovieModalProps {
 const MovieModal = ({ isOpen, onClose, movie }: MovieModalProps) => {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden"; // trava scroll no background
+      document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
@@ -31,12 +31,9 @@ const MovieModal = ({ isOpen, onClose, movie }: MovieModalProps) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        {/* Botão Fechar */}
         <button className="close-btn" onClick={onClose}>
           <X size={24} />
         </button>
-
-        {/* Poster + Detalhes */}
         <img
           src={imageUrl}
           alt={movie.title || movie.name}

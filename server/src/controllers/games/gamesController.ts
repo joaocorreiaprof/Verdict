@@ -125,3 +125,14 @@ export const getGamesByGenre = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to fetch games by genre" });
   }
 };
+
+export const getGameDetails = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const { data } = await rawg.get(`/games/${id}`);
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch game details" });
+  }
+};

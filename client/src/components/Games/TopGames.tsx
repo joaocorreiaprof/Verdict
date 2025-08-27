@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import GameCarousel from "../../components/Carousel/GameCarousel";
+import GameModal from "../Modals/GamesModal";
 import { getTopGames } from "../../services/gamesServiceClient";
 
 interface TopGamesItem {
@@ -12,6 +13,8 @@ interface TopGamesItem {
 const TopGames = () => {
   const [topGames, setTopGames] = useState<TopGamesItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedGame, setSelectedGame] = useState<TopGamesItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +35,19 @@ const TopGames = () => {
 
   return (
     <div id="top-games">
-      <GameCarousel title="🎮 Top Rated Games" items={topGames} />
+      <GameCarousel
+        title="🎮 Top Rated Games"
+        items={topGames}
+        onItemClick={(game) => {
+          setSelectedGame(game as TopGamesItem);
+          setIsModalOpen(true);
+        }}
+      />
+      <GameModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        game={selectedGame}
+      />
     </div>
   );
 };

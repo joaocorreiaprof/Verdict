@@ -11,9 +11,14 @@ interface GameCarouselItem {
 interface GameCarouselProps {
   title: string;
   items: GameCarouselItem[];
+  onItemClick?: (item: GameCarouselItem) => void; // Add this line
 }
 
-const GameCarousel: React.FC<GameCarouselProps> = ({ title, items }) => {
+const GameCarousel: React.FC<GameCarouselProps> = ({
+  title,
+  items,
+  onItemClick,
+}) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -42,7 +47,12 @@ const GameCarousel: React.FC<GameCarouselProps> = ({ title, items }) => {
         </button>
         <div className="game-carousel-container" ref={scrollRef}>
           {items.map((item) => (
-            <div key={item.id} className="game-carousel-item">
+            <div
+              key={item.id}
+              className="game-carousel-item"
+              onClick={() => onItemClick && onItemClick(item)} // Add this line
+              style={{ cursor: onItemClick ? "pointer" : "default" }} // Optional
+            >
               <div className="game-carousel-image-wrapper">
                 <img
                   src={item.background_image || "/placeholder-game.png"}
