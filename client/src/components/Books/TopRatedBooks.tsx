@@ -2,11 +2,14 @@
 import { useEffect, useState } from "react";
 import { getTopRated } from "../../services/booksServiceClient";
 import BooksCarousel from "../Carousel/BookCarousel";
+import BookModal from "../Modals/BookModal";
+
 interface BookTestItem {
   id: string;
   title: string;
   thumbnail?: string;
   averageRating?: number;
+  description?: string; // Add this line
 }
 
 interface GoogleBooksVolumeInfo {
@@ -15,6 +18,7 @@ interface GoogleBooksVolumeInfo {
     thumbnail?: string;
   };
   averageRating?: number;
+  description?: string; // Add this line
 }
 
 interface GoogleBooksItem {
@@ -29,6 +33,8 @@ interface GoogleBooksResponse {
 const TopRatedBooks = () => {
   const [books, setBooks] = useState<BookTestItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedBook, setSelectedBook] = useState<BookTestItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -43,6 +49,7 @@ const TopRatedBooks = () => {
             "https://"
           ),
           averageRating: item.volumeInfo?.averageRating ?? 0,
+          description: item.volumeInfo?.description ?? "", // Add this line
         }));
 
         setBooks(mappedBooks);
@@ -58,7 +65,23 @@ const TopRatedBooks = () => {
 
   if (loading) return <p>Loading...</p>;
 
-  return <BooksCarousel title="📚 Top Rated Books" items={books} />;
+  return (
+    <>
+      <BooksCarousel
+        title="📚 Top Rated Books"
+        items={books}
+        onItemClick={(book) => {
+          setSelectedBook(book);
+          setIsModalOpen(true);
+        }}
+      />
+      <BookModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        book={selectedBook}
+      />
+    </>
+  );
 };
 
 export default TopRatedBooks;

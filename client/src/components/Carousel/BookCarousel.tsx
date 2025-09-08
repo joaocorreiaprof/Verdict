@@ -12,9 +12,14 @@ interface BookItem {
 interface BooksCarouselProps {
   title: string;
   items: BookItem[];
+  onItemClick?: (book: BookItem) => void;
 }
 
-const BooksCarousel: React.FC<BooksCarouselProps> = ({ title, items }) => {
+const BooksCarousel: React.FC<BooksCarouselProps> = ({
+  title,
+  items,
+  onItemClick,
+}) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -31,7 +36,6 @@ const BooksCarousel: React.FC<BooksCarouselProps> = ({ title, items }) => {
   return (
     <div className="books-carousel-section">
       <h2 className="books-carousel-title">{title}</h2>
-
       <div className="books-carousel-wrapper">
         <button
           className="books-carousel-arrow books-carousel-left"
@@ -40,10 +44,14 @@ const BooksCarousel: React.FC<BooksCarouselProps> = ({ title, items }) => {
         >
           ◀
         </button>
-
         <div className="books-carousel-container" ref={scrollRef}>
           {items.map((book) => (
-            <div key={book.id} className="books-carousel-item">
+            <div
+              key={book.id}
+              className="books-carousel-item"
+              onClick={() => onItemClick?.(book)}
+              style={{ cursor: "pointer" }}
+            >
               {book.thumbnail && (
                 <img
                   src={book.thumbnail}
@@ -56,7 +64,6 @@ const BooksCarousel: React.FC<BooksCarouselProps> = ({ title, items }) => {
             </div>
           ))}
         </div>
-
         <button
           className="books-carousel-arrow books-carousel-right"
           onClick={() => scroll("right")}
