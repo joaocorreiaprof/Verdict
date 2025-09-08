@@ -114,7 +114,7 @@ const PublicLandingPage = () => {
 
         <button
           onClick={() => navigate("/signup")}
-          className="header-sign-in-btn"
+          className="public-header-sign-in-btn"
           style={{ marginTop: "15px" }}
         >
           Create your account
@@ -425,7 +425,7 @@ const PublicLandingPage = () => {
         </div>
         <button
           onClick={() => navigate("/signup")}
-          className="header-sign-in-btn"
+          className="public-header-sign-in-btn"
           style={{ marginTop: "15px" }}
         >
           Create your account
