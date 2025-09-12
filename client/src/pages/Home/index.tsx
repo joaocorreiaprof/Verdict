@@ -14,7 +14,6 @@ import NewReleasesBooks from "../../components/Books/NewReleasesBooks";
 const Home = () => {
   return (
     <div id="home">
-      <Header />
       <TrendingMovies />
       <DiscoverMovies />
       <TopRatedSeries />
@@ -23,6 +22,7 @@ const Home = () => {
       <NewReleases />
       <TopRatedBooks />
       <NewReleasesBooks />
+      <Header />
     </div>
   );
 };

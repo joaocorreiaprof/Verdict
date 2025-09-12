@@ -2,7 +2,7 @@
 
 #header {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   display: flex;
   justify-content: space-between;
@@ -10,15 +10,44 @@
   min-width: 100vw;
   padding: 15px 25px;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.85);
+  background-color: var(--bg-dark);
   font-family: "Inter";
+  height: 8%;
 }
-
+/*
 .header-title {
   color: var(--text-primary-red);
   font-family: "Merriweather";
   text-transform: uppercase;
   font-size: 1.3rem;
+}
+*/
+
+.header-section {
+  background: none;
+  color: white;
+  border: none;
+}
+
+.header-section-link {
+  background: none;
+  color: white;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent; /* Remove blue highlight on mobile */
+  user-select: none; /* Prevent text selection highlight */
+}
+
+.header-section-link:hover,
+.header-section-link:active,
+.header-section-link:focus {
+  color: white;
+  text-decoration: none;
+  outline: none;
+  background: none;
+  box-shadow: none;
 }
 
 .sidebar-overlay {
@@ -33,10 +62,10 @@
 }
 
 .sidebar {
-  background: #181818;
+  background-color: var(--bg-dark);
   color: var(--text-primary-white);
-  width: 250px;
-  height: 100%;
+  width: 70%;
+  height: 92%;
   padding: 30px 20px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
   display: flex;

@@ -1,6 +1,14 @@
 //styles
 import "./Header.css";
 
+//icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faScaleBalanced } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -30,10 +38,28 @@ const Header: React.FC = () => {
   return (
     <>
       <header id="header">
-        <h2 className="header-title">Verdict</h2>
-        <h3>{getTitle()}</h3>
-        <button onClick={() => setSidebarOpen(true)}>☰</button>
+        <Link to="/home" className="header-section-link">
+          <FontAwesomeIcon icon={faHouse} />
+          <p>Home</p>
+        </Link>
+        <button className="header-section">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <p>Search</p>
+        </button>
+        <button className="header-section">
+          <FontAwesomeIcon icon={faScaleBalanced} />
+          <p>{getTitle()}</p>
+        </button>
+        <button className="header-section">
+          <FontAwesomeIcon icon={faHeart} />
+          <p>Favourites</p>
+        </button>
+        <button className="header-section" onClick={() => setSidebarOpen(true)}>
+          <FontAwesomeIcon icon={faBars} />
+          <p>More</p>
+        </button>
       </header>
+
       {sidebarOpen && (
         <div className="sidebar-overlay" onClick={handleSidebarClose}>
           <nav
