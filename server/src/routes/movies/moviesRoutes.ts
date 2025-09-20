@@ -6,10 +6,12 @@ import {
   getTopRatedMovies,
   getUpcomingMovies,
   getNowPlayingMovies,
+  getRandomTrendingMovie,
 } from "../../controllers/movies/moviesController";
 const router = Router();
 
 router.get("/trending", getTrending);
+router.get("/trending/random", getRandomTrendingMovie);
 router.get("/discover", getDiscover);
 router.get("/popular", getPopularMovies);
 router.get("/top-rated", getTopRatedMovies);

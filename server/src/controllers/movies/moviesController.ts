@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import tmdb from "../../services/moviesServiceServer";
 
-export const getTrending = async (req: Request, res: Response) => {
+export const getTrending = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { data } = await tmdb.get("/trending/all/day?language=en-US");
     res.json(data);
@@ -11,7 +14,30 @@ export const getTrending = async (req: Request, res: Response) => {
   }
 };
 
-export const getDiscover = async (req: Request, res: Response) => {
+export const getRandomTrendingMovie = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { data } = await tmdb.get("/trending/all/day?language=en-US");
+    const results = data.results;
+    if (!results || results.length === 0) {
+      res.status(404).json({ error: "No trending movies found" });
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * results.length);
+    const randomMovie = results[randomIndex];
+    res.json(randomMovie);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch a random trending movie" });
+  }
+};
+
+export const getDiscover = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { data } = await tmdb.get(
       "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc"
@@ -23,7 +49,10 @@ export const getDiscover = async (req: Request, res: Response) => {
   }
 };
 
-export const getPopularMovies = async (req: Request, res: Response) => {
+export const getPopularMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { data } = await tmdb.get("/movie/popular?language=en-US&page=1");
     res.json(data);
@@ -33,7 +62,10 @@ export const getPopularMovies = async (req: Request, res: Response) => {
   }
 };
 
-export const getTopRatedMovies = async (req: Request, res: Response) => {
+export const getTopRatedMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { data } = await tmdb.get("/movie/top_rated?language=en-US&page=1");
     res.json(data);
@@ -43,7 +75,10 @@ export const getTopRatedMovies = async (req: Request, res: Response) => {
   }
 };
 
-export const getUpcomingMovies = async (req: Request, res: Response) => {
+export const getUpcomingMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { data } = await tmdb.get("/movie/upcoming?language=en-US&page=1");
     res.json(data);
@@ -53,7 +88,10 @@ export const getUpcomingMovies = async (req: Request, res: Response) => {
   }
 };
 
-export const getNowPlayingMovies = async (req: Request, res: Response) => {
+export const getNowPlayingMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { data } = await tmdb.get("/movie/now_playing?language=en-US&page=1");
     res.json(data);

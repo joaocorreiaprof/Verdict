@@ -9,7 +9,7 @@ import { getTrending } from "../../../services/moviesServiceClient";
 //components
 import Carousel from "../../Carousel/Carousel";
 import Loading from "../../Loading/Loading";
-import MovieModal from "../../Modals/MovieModal"; // Import the modal
+import MovieModal from "../../Modals/MovieModal";
 
 interface TrendingMoviesItem {
   id: number;

@@ -9,6 +9,11 @@ export const getTrending = async () => {
   return response.data;
 };
 
+export const getRandomTrendingMovie = async () => {
+  const response = await API.get("/trending/random");
+  return response.data;
+};
+
 export const getDiscover = async () => {
   const response = await API.get("/discover");
   return response.data;

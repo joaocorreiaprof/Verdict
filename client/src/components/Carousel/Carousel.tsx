@@ -49,18 +49,14 @@ const Carousel: React.FC<CarouselProps> = ({ title, items, onItemClick }) => {
             <div
               key={item.id}
               className="home-carousel-item"
-              onClick={() => onItemClick && onItemClick(item)} // Add this line
-              style={{ cursor: onItemClick ? "pointer" : "default" }} // Optional: show pointer
+              onClick={() => onItemClick && onItemClick(item)}
+              style={{ cursor: onItemClick ? "pointer" : "default" }}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
                 alt={item.title || item.name}
                 className="home-carousel-image"
               />
-              <h3 className="home-carousel-item-title">
-                {item.title || item.name}
-              </h3>
-              <p className="home-carousel-rating">⭐ {item.vote_average}</p>
             </div>
           ))}
         </div>
