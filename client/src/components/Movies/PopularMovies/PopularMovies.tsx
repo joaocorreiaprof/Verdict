@@ -45,7 +45,7 @@ const PopularMovies = () => {
   return (
     <div id="popular-movies">
       <Carousel
-        title="🔥 Popular Movies"
+        title="Popular Movies"
         items={popularMovies}
         onItemClick={(movie) => {
           setSelectedMovie(movie as PopularMoviesItem);

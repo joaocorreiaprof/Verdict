@@ -47,7 +47,7 @@ const UpcomingMovies = () => {
   return (
     <div id="upcoming-movies">
       <Carousel
-        title="🎬 Upcoming Movies"
+        title="Upcoming Movies"
         items={upcomingMovies}
         onItemClick={(movie) => {
           setSelectedMovie(movie as UpcomingMoviesItem);

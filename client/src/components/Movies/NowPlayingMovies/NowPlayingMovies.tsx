@@ -46,7 +46,7 @@ const NowPlayingMovies = () => {
   return (
     <div id="now-playing-movies">
       <Carousel
-        title="🎬 Now Playing Movies"
+        title="Now Playing Movies"
         items={nowPlayingMovies}
         onItemClick={(movie) => {
           setSelectedMovie(movie as NowPlayingMoviesItem);

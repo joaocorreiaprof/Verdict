@@ -59,7 +59,7 @@ const TrendingMovies = () => {
   return (
     <div id="trending-movies">
       <Carousel
-        title="🔥 Trending Movies"
+        title="Trending Movies"
         items={trendingMovies}
         onItemClick={(movie) => {
           setSelectedMovie(movie as TrendingMoviesItem);
