@@ -34,6 +34,20 @@ export const getRandomTrendingMovie = async (
   }
 };
 
+export const getMovieVideos = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { id, media_type } = req.params;
+
+    const { data } = await tmdb.get(`/${media_type}/${id}/videos`);
+    res.json(data.results);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch movie videos" });
+  }
+};
+
 export const getDiscover = async (
   req: Request,
   res: Response

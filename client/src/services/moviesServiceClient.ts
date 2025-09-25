@@ -14,6 +14,11 @@ export const getRandomTrendingMovie = async () => {
   return response.data;
 };
 
+export const getMovieVideos = async (id: number, mediaType: string) => {
+  const { data } = await axios.get(`/api/movies/${mediaType}/${id}/videos`);
+  return data;
+};
+
 export const getDiscover = async () => {
   const response = await API.get("/discover");
   return response.data;
