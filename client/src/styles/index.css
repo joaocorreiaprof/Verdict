@@ -29,6 +29,10 @@ body {
   letter-spacing: 1px;
 }
 
+.content {
+  padding-bottom: 15%;
+}
+
 img,
 picture,
 video,

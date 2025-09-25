@@ -21,6 +21,9 @@ import GoogleAuth from "./pages/GoogleAuth";
 //styles
 import "./styles/App.css";
 
+//layout
+import Layout from "./layout/Layout";
+
 function App() {
   return (
     <div id="App">
@@ -29,11 +32,15 @@ function App() {
           <Route path="/" element={<PublicLandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/home" element={<PrivateRoute component={Home} />} />
-          <Route path="/movies" element={<PrivateRoute component={Movies} />} />
-          <Route path="/series" element={<PrivateRoute component={Series} />} />
-          <Route path="/books" element={<PrivateRoute component={Books} />} />
-          <Route path="/games" element={<PrivateRoute component={Games} />} />
+
+          <Route element={<PrivateRoute component={Layout} />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/series" element={<Series />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/games" element={<Games />} />
+          </Route>
+
           <Route path="/google-auth" element={<GoogleAuth />} />
         </Routes>
       </BrowserRouter>

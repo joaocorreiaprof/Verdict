@@ -2,7 +2,6 @@
 import "./Movies.css";
 
 //components
-import Header from "../../components/Header/Header";
 import TrendingMovies from "../../components/Movies/TrendingMovies/TrendingMovies";
 import DiscoverMovies from "../../components/Movies/DiscoverMovies/DiscoverMovies";
 import PopularMovies from "../../components/Movies/PopularMovies/PopularMovies";
@@ -14,7 +13,6 @@ import RandomTrendingMovie from "../../components/Movies/RandomTrendingMovie/Ran
 const Movies = () => {
   return (
     <div id="movies-page">
-      <Header />
       <RandomTrendingMovie />
       <TrendingMovies />
       <DiscoverMovies />
