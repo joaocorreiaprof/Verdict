@@ -38,7 +38,7 @@ const NewReleases = () => {
   return (
     <div id="new-releases">
       <GameCarousel
-        title="🎮 New Releases"
+        title="New Releases"
         items={newReleases}
         onItemClick={(game) => {
           setSelectedGame(game as NewReleasesItem);

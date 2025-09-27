@@ -53,9 +53,17 @@ export const getDiscover = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { data } = await tmdb.get(
-      "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc"
-    );
+    const { data } = await tmdb.get("/discover/movie", {
+      params: {
+        include_adult: false,
+        include_video: false,
+        language: "en-US",
+        page: 1,
+        sort_by: "release_date.desc", // newest first
+        "release_date.lte": new Date().toISOString().split("T")[0], // only past or current releases
+        "vote_count.gte": 50, // avoids obscure movies with no votes
+      },
+    });
     res.json(data);
   } catch (err) {
     console.error(err);

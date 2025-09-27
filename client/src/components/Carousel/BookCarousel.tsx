@@ -59,8 +59,6 @@ const BooksCarousel: React.FC<BooksCarouselProps> = ({
                   className="books-carousel-image"
                 />
               )}
-              <h3 className="books-carousel-item-title">{book.title}</h3>
-              <p className="books-carousel-rating">⭐ {book.averageRating}</p>
             </div>
           ))}
         </div>

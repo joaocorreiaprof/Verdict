@@ -68,7 +68,7 @@ const NewReleasesBooks = () => {
   return (
     <>
       <BooksCarousel
-        title="📚 New Releases Books"
+        title="New Releases Books"
         items={books}
         onItemClick={(book) => {
           setSelectedBook(book);
