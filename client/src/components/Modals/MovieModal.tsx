@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { X } from "lucide-react";
+import { ArrowBigLeft } from "lucide-react";
 import "./Modal.css";
 import { getMovieVideos } from "../../services/moviesServiceClient";
 import { genresMap } from "../../genresMap/genresMap";
@@ -74,7 +74,7 @@ const MovieModal = ({
     <div className="modal-overlay">
       <div className="modal-content">
         <button className="close-btn" onClick={onClose}>
-          <X size={24} />
+          <ArrowBigLeft size={24} />
         </button>
         {trailerUrl ? (
           <div className="modal-trailer-wrapper">
