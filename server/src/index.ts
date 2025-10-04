@@ -16,6 +16,7 @@ import moviesRoutes from "./routes/movies/moviesRoutes";
 import seriesRoutes from "./routes/series/seriesRoutes";
 import gamesRoutes from "./routes/games/gamesRoutes";
 import booksRoutes from "./routes/books/booksRoutes";
+import trackedItems from "./routes/trackedItems/trackedItemsRoutes";
 
 //Middlewares
 import { authMiddleware } from "./middleware/authMiddleware";
@@ -54,6 +55,7 @@ app.use("/api/movies", moviesRoutes);
 app.use("/api/series", seriesRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/books", booksRoutes);
+app.use("/api/tracking", authMiddleware, trackedItems);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
