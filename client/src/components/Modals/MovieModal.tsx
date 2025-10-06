@@ -1,7 +1,18 @@
+//Dependencies
 import { useEffect, useState, useCallback } from "react";
-import { ArrowBigLeft } from "lucide-react";
+
+//Styles
 import "./Modal.css";
+import { ArrowBigLeft } from "lucide-react";
+
+//Services
 import { getMovieVideos } from "../../services/moviesServiceClient";
+import {
+  toggleFavorite,
+  toggleSeen,
+} from "../../services/trackedItemsServiceClient";
+
+//Map
 import { genresMap } from "../../genresMap/genresMap";
 
 interface MovieModalProps {
@@ -38,6 +49,22 @@ const MovieModal = ({
       setTrailerUrl(null);
     }
   }, [isOpen, externalTrailerUrl]);
+
+  const handleToggleFavorite = async () => {
+    if (!movie) return;
+    await toggleFavorite({
+      itemId: String(movie.id),
+      itemType: movie.media_type?.toUpperCase() || "MOVIE",
+    });
+  };
+
+  const handleToggleSeen = async () => {
+    if (!movie) return;
+    await toggleSeen({
+      itemId: String(movie.id),
+      itemType: movie.media_type?.toUpperCase() || "MOVIE",
+    });
+  };
 
   const handleShowTrailer = useCallback(async () => {
     if (!movie) return;
@@ -103,8 +130,12 @@ const MovieModal = ({
             <p className="modal-rating">⭐ {movie.vote_average.toFixed(1)}</p>
             <p className="modal-overview">{movie.overview}</p>
             <div className="modal-actions">
-              <button className="btn-like">🚫 👀</button>
-              <button className="btn-favorite">📌</button>
+              <button className="btn-like" onClick={handleToggleSeen}>
+                👀
+              </button>
+              <button className="btn-favorite" onClick={handleToggleFavorite}>
+                📌
+              </button>
               <button className="btn-details">🔎</button>
               <button
                 className="btn-trailer"

@@ -1,12 +1,13 @@
 import { Router } from "express";
 import {
-  addToFavorites,
-  markAsSeen,
+  toggleFavorite,
+  toggleSeenStatus,
 } from "../../controllers/trackedItems/trackedItemsController";
+import { authMiddleware } from "../../middleware/authMiddleware";
 
 const router = Router();
 
-router.post("/:userId/favorites", addToFavorites);
-router.post("/:userId/seen", markAsSeen);
+router.post("/favorites", authMiddleware, toggleFavorite);
+router.post("/seen", authMiddleware, toggleSeenStatus);
 
 export default router;
