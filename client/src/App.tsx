@@ -10,6 +10,7 @@ import PublicLandingPage from "./pages/PublicLandingPage/PublicLandingPage";
 
 //pages
 import Home from "./pages/Home";
+import InfoMovie from "./pages/Movies/InfoMovie";
 import Movies from "./pages/Movies/Movies";
 import Series from "./pages/Series/Series";
 import Books from "./pages/Books/Books";
@@ -36,6 +37,7 @@ function App() {
           <Route element={<PrivateRoute component={Layout} />}>
             <Route path="/home" element={<Home />} />
             <Route path="/movies" element={<Movies />} />
+            <Route path="/movie/:id" element={<InfoMovie />} />
             <Route path="/series" element={<Series />} />
             <Route path="/books" element={<Books />} />
             <Route path="/games" element={<Games />} />

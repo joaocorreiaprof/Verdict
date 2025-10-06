@@ -1,12 +1,13 @@
 //Dependencies
 import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
+//style
 import "./Modal.css";
 import { ArrowBigLeft } from "lucide-react";
 
 //Services
-
 import { getMovieVideos } from "../../services/moviesServiceClient";
-
 import {
   toggleFavorite,
   toggleSeen,
@@ -17,7 +18,6 @@ import {
 //Map
 import { genresMap } from "../../genresMap/genresMap";
 
-//Types
 interface MovieModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -50,7 +50,8 @@ const MovieModal: React.FC<MovieModalProps> = ({
   const [loadingTrailer, setLoadingTrailer] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isSeen, setIsSeen] = useState(false);
-  const [isToSee, setIsToSee] = useState(false); // ✅ added state
+  const [isToSee, setIsToSee] = useState(false);
+  const navigate = useNavigate(); // ✅ Moved to top with other hooks
 
   // When modal opens, fetch tracking status
   useEffect(() => {
@@ -65,7 +66,7 @@ const MovieModal: React.FC<MovieModalProps> = ({
         });
         setIsFavorite(status.favorite);
         setIsSeen(status.seen);
-        setIsToSee(status.toSee || false); // ✅ added to handle "See in Future"
+        setIsToSee(status.toSee || false);
       };
 
       fetchStatus();
@@ -94,7 +95,6 @@ const MovieModal: React.FC<MovieModalProps> = ({
   };
 
   const handleToggleToSee = async (): Promise<void> => {
-    // ✅ new handler
     if (!movie) return;
     await toggleToSee({
       itemId: String(movie.id),
@@ -125,6 +125,12 @@ const MovieModal: React.FC<MovieModalProps> = ({
     setLoadingTrailer(false);
   }, [movie]);
 
+  const handleShowDetails = () => {
+    if (!movie) return;
+    navigate(`/movie/${movie.id}`, { state: { movie } });
+  };
+
+  // Early return after all hooks have been called
   if (!isOpen || !movie) return null;
 
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -173,7 +179,10 @@ const MovieModal: React.FC<MovieModalProps> = ({
                 {isToSee ? "🕒 Remove" : "🕒 See in Future"}
               </button>
 
-              <button className="btn-details">🔎</button>
+              <button className="btn-details" onClick={handleShowDetails}>
+                🔎
+              </button>
+
               <button
                 className="btn-trailer"
                 onClick={handleShowTrailer}
