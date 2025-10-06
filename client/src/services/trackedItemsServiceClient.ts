@@ -51,3 +51,19 @@ export async function toggleSeen(data: {
     throw axiosError.response?.data || axiosError;
   }
 }
+
+export async function getTrackedStatus(params: {
+  itemId: string;
+  itemType: string;
+}): Promise<{ seen: boolean; favorite: boolean }> {
+  try {
+    const response = await axios.get(`${API_URL}/status`, {
+      ...getAuthHeaders(),
+      params,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar status do item:", error);
+    return { seen: false, favorite: false }; // fallback
+  }
+}

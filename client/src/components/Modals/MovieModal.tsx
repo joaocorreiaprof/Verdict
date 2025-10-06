@@ -1,7 +1,5 @@
 //Dependencies
 import { useEffect, useState, useCallback } from "react";
-
-//Styles
 import "./Modal.css";
 import { ArrowBigLeft } from "lucide-react";
 
@@ -10,11 +8,13 @@ import { getMovieVideos } from "../../services/moviesServiceClient";
 import {
   toggleFavorite,
   toggleSeen,
+  getTrackedStatus,
 } from "../../services/trackedItemsServiceClient";
 
 //Map
 import { genresMap } from "../../genresMap/genresMap";
 
+//Types
 interface MovieModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -31,52 +31,69 @@ interface MovieModalProps {
   trailerUrl?: string | null;
 }
 
-const MovieModal = ({
+interface Video {
+  key: string;
+  type: string;
+  site: string;
+}
+
+const MovieModal: React.FC<MovieModalProps> = ({
   isOpen,
   onClose,
   movie,
   trailerUrl: externalTrailerUrl,
-}: MovieModalProps) => {
+}) => {
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
   const [loadingTrailer, setLoadingTrailer] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isSeen, setIsSeen] = useState(false);
 
+  // When modal opens, fetch tracking status
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && movie) {
       document.body.style.overflow = "hidden";
       setTrailerUrl(externalTrailerUrl || null);
+
+      const fetchStatus = async () => {
+        const status = await getTrackedStatus({
+          itemId: String(movie.id),
+          itemType: movie.media_type?.toUpperCase() || "MOVIE",
+        });
+        setIsFavorite(status.favorite);
+        setIsSeen(status.seen);
+      };
+
+      fetchStatus();
     } else {
       document.body.style.overflow = "auto";
       setTrailerUrl(null);
     }
-  }, [isOpen, externalTrailerUrl]);
+  }, [isOpen, movie, externalTrailerUrl]);
 
-  const handleToggleFavorite = async () => {
+  const handleToggleFavorite = async (): Promise<void> => {
     if (!movie) return;
     await toggleFavorite({
       itemId: String(movie.id),
       itemType: movie.media_type?.toUpperCase() || "MOVIE",
     });
+    setIsFavorite((prev) => !prev);
   };
 
-  const handleToggleSeen = async () => {
+  const handleToggleSeen = async (): Promise<void> => {
     if (!movie) return;
     await toggleSeen({
       itemId: String(movie.id),
       itemType: movie.media_type?.toUpperCase() || "MOVIE",
     });
+    setIsSeen((prev) => !prev);
   };
 
-  const handleShowTrailer = useCallback(async () => {
+  const handleShowTrailer = useCallback(async (): Promise<void> => {
     if (!movie) return;
     setLoadingTrailer(true);
     try {
       const mediaType = movie.media_type || "movie";
-      const videos = await getMovieVideos(movie.id, mediaType);
-      interface Video {
-        key: string;
-        type: string;
-        site: string;
-      }
+      const videos: Video[] = await getMovieVideos(movie.id, mediaType);
       const trailer = videos.find(
         (vid: Video) => vid.type === "Trailer" && vid.site === "YouTube"
       );
@@ -103,6 +120,7 @@ const MovieModal = ({
         <button className="close-btn" onClick={onClose}>
           <ArrowBigLeft size={24} />
         </button>
+
         {trailerUrl ? (
           <div className="modal-trailer-wrapper">
             <iframe
@@ -122,19 +140,19 @@ const MovieModal = ({
               alt={movie.title || movie.name}
               className="modal-poster"
             />
-
             <h2 className="modal-title">{movie.title || movie.name}</h2>
             <p className="modal-genres">
-              {movie.genre_ids?.map((id) => genresMap[id]).join(" ")}
+              {movie.genre_ids?.map((id: number) => genresMap[id]).join(" ")}
             </p>
             <p className="modal-rating">⭐ {movie.vote_average.toFixed(1)}</p>
             <p className="modal-overview">{movie.overview}</p>
+
             <div className="modal-actions">
               <button className="btn-like" onClick={handleToggleSeen}>
-                👀
+                {isSeen ? "✅" : "👀"}
               </button>
               <button className="btn-favorite" onClick={handleToggleFavorite}>
-                📌
+                {isFavorite ? "❤️" : "📌"}
               </button>
               <button className="btn-details">🔎</button>
               <button
