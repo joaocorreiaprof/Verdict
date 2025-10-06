@@ -16,7 +16,6 @@ export const toggleFavorite = async (
       return;
     }
 
-    // ✅ Validate and convert to enum
     if (!Object.values(ItemType).includes(itemType)) {
       res.status(400).json({ error: "Invalid item type" });
       return;
@@ -194,5 +193,62 @@ export const getTrackedStatus = async (
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error fetching item status" });
+  }
+};
+//watchlist in future
+export const toggleToSeeStatus = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { itemId, itemType } = req.body;
+    const username = (req as any).user?.username;
+
+    if (!username) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (!user) {
+      res.status(404).json({ error: "User not found" });
+      return;
+    }
+
+    const existing = await prisma.userTrackedItem.findUnique({
+      where: {
+        userId_itemId_itemType: { userId: user.id, itemId, itemType },
+      },
+    });
+
+    let updatedItem;
+    if (existing) {
+      updatedItem = await prisma.userTrackedItem.update({
+        where: {
+          userId_itemId_itemType: { userId: user.id, itemId, itemType },
+        },
+        data: { status: existing.status === "TO_SEE" ? "NOT_SEEN" : "TO_SEE" },
+      });
+    } else {
+      updatedItem = await prisma.userTrackedItem.create({
+        data: {
+          userId: user.id,
+          itemId,
+          itemType,
+          status: "TO_SEE",
+        },
+      });
+    }
+
+    res.json({
+      message:
+        updatedItem.status === "TO_SEE"
+          ? "Added to watch later"
+          : "Removed from watch later",
+      data: updatedItem,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error toggling to-see status" });
   }
 };

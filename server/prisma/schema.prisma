@@ -28,7 +28,7 @@ model UserTrackedItem {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
-  itemId    String   // External API id or ISBN for books
+  itemId    String
   itemType  ItemType
   status    TrackingStatus @default(NOT_SEEN)
   favorite  Boolean  @default(false)
@@ -40,4 +40,5 @@ model UserTrackedItem {
 enum TrackingStatus {
   NOT_SEEN
   SEEN
+  TO_SEE
 }

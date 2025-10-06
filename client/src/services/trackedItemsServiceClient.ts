@@ -55,7 +55,7 @@ export async function toggleSeen(data: {
 export async function getTrackedStatus(params: {
   itemId: string;
   itemType: string;
-}): Promise<{ seen: boolean; favorite: boolean }> {
+}): Promise<{ seen: boolean; favorite: boolean; toSee: boolean }> {
   try {
     const response = await axios.get(`${API_URL}/status`, {
       ...getAuthHeaders(),
@@ -64,6 +64,24 @@ export async function getTrackedStatus(params: {
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar status do item:", error);
-    return { seen: false, favorite: false }; // fallback
+    return { seen: false, favorite: false, toSee: false }; // fallback updated
+  }
+}
+
+export async function toggleToSee(data: {
+  itemId: string;
+  itemType: string;
+}): Promise<ToggleResponse> {
+  try {
+    const response = await axios.post<ToggleResponse>(
+      `${API_URL}/to-see`,
+      data,
+      getAuthHeaders()
+    );
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError<{ error: string }>;
+    console.error("Erro ao alternar 'ver depois':", axiosError);
+    throw axiosError.response?.data || axiosError;
   }
 }

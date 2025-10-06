@@ -4,11 +4,14 @@ import "./Modal.css";
 import { ArrowBigLeft } from "lucide-react";
 
 //Services
+
 import { getMovieVideos } from "../../services/moviesServiceClient";
+
 import {
   toggleFavorite,
   toggleSeen,
   getTrackedStatus,
+  toggleToSee,
 } from "../../services/trackedItemsServiceClient";
 
 //Map
@@ -47,6 +50,7 @@ const MovieModal: React.FC<MovieModalProps> = ({
   const [loadingTrailer, setLoadingTrailer] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isSeen, setIsSeen] = useState(false);
+  const [isToSee, setIsToSee] = useState(false); // ✅ added state
 
   // When modal opens, fetch tracking status
   useEffect(() => {
@@ -61,6 +65,7 @@ const MovieModal: React.FC<MovieModalProps> = ({
         });
         setIsFavorite(status.favorite);
         setIsSeen(status.seen);
+        setIsToSee(status.toSee || false); // ✅ added to handle "See in Future"
       };
 
       fetchStatus();
@@ -86,6 +91,16 @@ const MovieModal: React.FC<MovieModalProps> = ({
       itemType: movie.media_type?.toUpperCase() || "MOVIE",
     });
     setIsSeen((prev) => !prev);
+  };
+
+  const handleToggleToSee = async (): Promise<void> => {
+    // ✅ new handler
+    if (!movie) return;
+    await toggleToSee({
+      itemId: String(movie.id),
+      itemType: movie.media_type?.toUpperCase() || "MOVIE",
+    });
+    setIsToSee((prev) => !prev);
   };
 
   const handleShowTrailer = useCallback(async (): Promise<void> => {
@@ -154,6 +169,10 @@ const MovieModal: React.FC<MovieModalProps> = ({
               <button className="btn-favorite" onClick={handleToggleFavorite}>
                 {isFavorite ? "❤️" : "📌"}
               </button>
+              <button className="btn-watchlater" onClick={handleToggleToSee}>
+                {isToSee ? "🕒 Remove" : "🕒 See in Future"}
+              </button>
+
               <button className="btn-details">🔎</button>
               <button
                 className="btn-trailer"
