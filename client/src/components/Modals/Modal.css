@@ -1,3 +1,5 @@
+@import "../../styles/fonts.css";
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -39,6 +41,15 @@
 .modal-title {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  font-family: "Merriweather";
+}
+
+.modal-genres {
+  font-size: 1.15rem;
+}
+
+.modal-rating {
+  font-size: 1rem;
 }
 
 .modal-rating {
@@ -47,13 +58,13 @@
 }
 
 .modal-overview {
-  font-size: 0.9rem;
   margin-bottom: 1rem;
+  font-family: "Inter";
 }
 
 .modal-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
 }
 

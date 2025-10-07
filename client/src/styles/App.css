@@ -1,41 +1,41 @@
 /* Global Styles */
 
 h1 {
-  font-size: 1.5rem; /* Base font size for mobile */
+  font-size: 1.5rem;
 }
 
 p {
-  font-size: 0.875rem; /* Base font size for mobile */
+  font-size: 1.1rem;
 }
 
 .grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr; /* Single column by default for mobile */
+  grid-template-columns: 1fr;
 }
 
 /* Larger Screens: Tablet */
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   h1 {
-    font-size: 2rem; /* Larger font size for tablets */
+    font-size: 2rem;
   }
 
   p {
-    font-size: 1rem; /* Slightly larger font size for tablets */
+    font-size: 1rem;
   }
 }
 
 /* Larger Screens: Desktop */
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr); /* Three columns for desktops */
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .container {
-    max-width: 1200px; /* Restrict width for larger screens */
+    max-width: 1200px;
   }
 }

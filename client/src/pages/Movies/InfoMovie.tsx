@@ -12,7 +12,7 @@ const InfoMovie = () => {
   const movie = location.state?.movie;
 
   const handleGoBack = () => {
-    navigate(-1); // Go back to previous page
+    navigate(-1);
   };
 
   return (
