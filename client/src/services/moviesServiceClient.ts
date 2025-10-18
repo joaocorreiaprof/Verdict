@@ -43,3 +43,8 @@ export const getNowPlayingMovies = async () => {
   const response = await API.get("/now-playing");
   return response.data;
 };
+
+export const getRecentPopularComedyMovies = async () => {
+  const response = await API.get("/recent-popular-comedy");
+  return response.data;
+};

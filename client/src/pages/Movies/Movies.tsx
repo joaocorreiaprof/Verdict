@@ -9,6 +9,7 @@ import TopRatedMovies from "../../components/Movies/TopRatedMovies/TopRatedMovie
 import UpcomingMovies from "../../components/Movies/UpcomingMovies/UpcomingMovies";
 import NowPlayingMovies from "../../components/Movies/NowPlayingMovies/NowPlayingMovies";
 import RandomTrendingMovie from "../../components/Movies/RandomTrendingMovie/RandomTrendingMovie";
+import PopularComedy from "../../components/Movies/PopularComedy/PopularComedy";
 
 const Movies = () => {
   return (
@@ -20,6 +21,7 @@ const Movies = () => {
       <TopRatedMovies />
       <UpcomingMovies />
       <NowPlayingMovies />
+      <PopularComedy />
     </div>
   );
 };
