@@ -123,7 +123,6 @@ export const getNowPlayingMovies = async (
   }
 };
 
-//Need to be tested
 export const getRecentPopularComedyMovies = async (
   req: Request,
   res: Response
@@ -156,5 +155,42 @@ export const getRecentPopularComedyMovies = async (
     res
       .status(500)
       .json({ error: "Failed to fetch recent popular comedy movies" });
+  }
+};
+
+//ALL to be tested
+//action genre id: 28
+export const getRecentPopularActionMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { data } = await tmdb.get("/discover/movie", {
+      params: {
+        with_genres: 28,
+        include_adult: false,
+        language: "en-US",
+        sort_by: "popularity.desc",
+        "release_date.lte": new Date().toISOString().split("T")[0],
+        "vote_count.gte": 50,
+        page: 1,
+      },
+    });
+
+    // Optionally, filter to only keep recent ones (e.g., last 2 years)
+    const currentYear = new Date().getFullYear();
+    const recentMovies = data.results.filter((movie: any) => {
+      const releaseYear = movie.release_date
+        ? parseInt(movie.release_date.split("-")[0])
+        : 0;
+      return releaseYear >= currentYear - 2;
+    });
+
+    res.json(recentMovies);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: "Failed to fetch recent popular action movies" });
   }
 };
