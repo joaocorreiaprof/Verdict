@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     setTimeout(() => {
       setSidebarOpen(false);
       setClosing(false);
-    }, 200); // match animation duration
+    }, 200);
   };
 
   const getTitle = () => {
