@@ -29,7 +29,7 @@ export async function toggleFavorite(data: {
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ error: string }>;
-    console.error("Erro ao alternar favorito:", axiosError);
+    console.error("Error toggling favorite:", axiosError);
     throw axiosError.response?.data || axiosError;
   }
 }
@@ -47,7 +47,7 @@ export async function toggleSeen(data: {
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ error: string }>;
-    console.error("Erro ao alternar visto:", axiosError);
+    console.error("Error toggling seen:", axiosError);
     throw axiosError.response?.data || axiosError;
   }
 }
@@ -63,7 +63,7 @@ export async function getTrackedStatus(params: {
     });
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar status do item:", error);
+    console.error("Error fetching tracked status:", error);
     return { seen: false, favorite: false, toSee: false }; // fallback updated
   }
 }
@@ -81,7 +81,35 @@ export async function toggleToSee(data: {
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError<{ error: string }>;
-    console.error("Erro ao alternar 'ver depois':", axiosError);
+    console.error("Error toggling 'to see':", axiosError);
     throw axiosError.response?.data || axiosError;
+  }
+}
+
+// New: fetch favorite movies for authenticated user
+export async function getFavoriteMovies(): Promise<unknown[]> {
+  try {
+    const response = await axios.get(
+      `${API_URL}/favorites/movies`,
+      getAuthHeaders()
+    );
+    return response.data?.data || [];
+  } catch (error) {
+    console.error("Error fetching favorite movies:", error);
+    return [];
+  }
+}
+
+// New: fetch watchlist (TO_SEE) movies for authenticated user
+export async function getWatchlistMovies(): Promise<unknown[]> {
+  try {
+    const response = await axios.get(
+      `${API_URL}/watchlist/movies`,
+      getAuthHeaders()
+    );
+    return response.data?.data || [];
+  } catch (error) {
+    console.error("Error fetching watchlist movies:", error);
+    return [];
   }
 }

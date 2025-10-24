@@ -28,11 +28,15 @@ import PopularThriller from "../../components/Movies/PopularThriller/PopularThri
 import PopularTVMovies from "../../components/Movies/PopularTVMovies/PopularTVMovies";
 import PopularWar from "../../components/Movies/PopularWar/PopularWar";
 import PopularWestern from "../../components/Movies/PopularWestern/PopularWestern";
+import Watchlist from "../../components/Movies/Watchlist/Watchlist";
+import Favorites from "../../components/Movies/Favorites/Favorites";
 
 const Movies = () => {
   return (
     <div id="movies-page">
       <RandomTrendingMovie />
+      <Favorites />
+      <Watchlist />
       <TrendingMovies />
       <DiscoverMovies />
       <PopularMovies />

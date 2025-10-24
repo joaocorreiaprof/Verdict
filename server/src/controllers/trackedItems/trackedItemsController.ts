@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient, TrackingStatus, ItemType } from "@prisma/client";
+import tmdb from "../../services/moviesServiceServer";
 
 const prisma = new PrismaClient();
 
@@ -250,5 +251,98 @@ export const toggleToSeeStatus = async (
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error toggling to-see status" });
+  }
+};
+
+export const getFavoriteMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const username = (req as any).user?.username;
+    if (!username) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (!user) {
+      res.status(404).json({ error: "User not found" });
+      return;
+    }
+
+    const favorites = await prisma.userTrackedItem.findMany({
+      where: {
+        userId: user.id,
+        itemType: ItemType.MOVIE,
+        favorite: true,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    // Fetch TMDB details for each favorite movie
+    const movies = await Promise.all(
+      favorites.map(async (fav) => {
+        try {
+          const { data } = await tmdb.get(`/movie/${fav.itemId}`);
+          return data;
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    const validMovies = movies.filter((m) => m !== null);
+
+    res.json({ data: validMovies });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error fetching favorite movies" });
+  }
+};
+
+export const getWatchlistMovies = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const username = (req as any).user?.username;
+    if (!username) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (!user) {
+      res.status(404).json({ error: "User not found" });
+      return;
+    }
+
+    const watchlist = await prisma.userTrackedItem.findMany({
+      where: {
+        userId: user.id,
+        itemType: ItemType.MOVIE,
+        status: TrackingStatus.TO_SEE,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    const movies = await Promise.all(
+      watchlist.map(async (item) => {
+        try {
+          const { data } = await tmdb.get(`/movie/${item.itemId}`);
+          return data;
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    const validMovies = movies.filter((m) => m !== null);
+
+    res.json({ data: validMovies });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error fetching watchlist movies" });
   }
 };

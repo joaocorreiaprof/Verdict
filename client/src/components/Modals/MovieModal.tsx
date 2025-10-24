@@ -46,6 +46,7 @@ interface MovieModalProps {
     genre_ids?: number[];
   } | null;
   trailerUrl?: string | null;
+  onFavoriteToggle?: (movieId: number) => void; // 👈 new
 }
 
 interface Video {
@@ -59,6 +60,7 @@ const MovieModal: React.FC<MovieModalProps> = ({
   onClose,
   movie,
   trailerUrl: externalTrailerUrl,
+  onFavoriteToggle,
 }) => {
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
   const [loadingTrailer, setLoadingTrailer] = useState(false);
@@ -97,11 +99,30 @@ const MovieModal: React.FC<MovieModalProps> = ({
 
   const handleToggleFavorite = async (): Promise<void> => {
     if (!movie) return;
+
     await toggleFavorite({
       itemId: String(movie.id),
       itemType: getItemType(movie.media_type),
     });
+
     setIsFavorite((prev) => !prev);
+
+    if (isFavorite) {
+      // Movie was a favorite → now removed
+      onFavoriteToggle?.(movie.id);
+      window.dispatchEvent(
+        new CustomEvent("favoriteToggled", {
+          detail: { movie, added: false },
+        })
+      );
+    } else {
+      // Movie was not a favorite → now added
+      window.dispatchEvent(
+        new CustomEvent("favoriteToggled", {
+          detail: { movie, added: true },
+        })
+      );
+    }
   };
 
   const handleToggleSeen = async (): Promise<void> => {
